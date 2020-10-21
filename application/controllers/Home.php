@@ -10,6 +10,8 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		echo 'HOLA MUNDO';
+		$this->load->view('templates/header');
+		$this->load->view('home');
+		$this->load->view('templates/header');
 	}
 }
