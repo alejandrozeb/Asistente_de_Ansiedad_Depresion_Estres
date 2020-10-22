@@ -24,7 +24,7 @@ class Doctor extends CI_Controller {
             $d_telefono = $this->input->post('d_telefono');
             $p_email = $this->input->post('p_email');
             $p_password =md5($this->input->post('p_password'));
-            echo ' '.$d_nombre.' '.$d_apellido.' '.$d_telefono.' '.$p_email.' '.$p_password;
+            //echo ' '.$d_nombre.' '.$d_apellido.' '.$d_telefono.' '.$p_email.' '.$p_password;
 		}
 		$persona_detalles = array(
             'p_email' => $p_email,
@@ -60,8 +60,16 @@ class Doctor extends CI_Controller {
             }
             echo 'Id Doctor'.$idDoctor['PK_d_id'].' id Persona'.$FK_id_p['PK_p_id']; 
             $this->output->set_status_header(200);
-            //redireccionar
+			//redireccionar
+			redirect('Doctor/resultadosDoctor', 'refresh'); 
         }
-    }
+	}
+	
+	public function resultadosDoctor(){
+		$this->load->view('templates/header');
+		$this->load->view('templates/nav');
+		$this->load->view('doctor/resultadosDoc');
+		$this->load->view('templates/footer');
+	}
     
 }

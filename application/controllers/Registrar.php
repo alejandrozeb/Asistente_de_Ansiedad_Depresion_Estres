@@ -27,7 +27,7 @@ class Registrar extends CI_Controller {
             $u_genero = $this->input->post('u_genero');
             $p_email = $this->input->post('p_email');
             $p_password =md5($this->input->post('p_password'));
-            echo ' '.$u_nombre.' '.$u_apellido.' '.$u_date.' '.$u_telefono.' '.$u_genero.' '.$p_email.' '.$p_password;
+            //echo ' '.$u_nombre.' '.$u_apellido.' '.$u_date.' '.$u_telefono.' '.$u_genero.' '.$p_email.' '.$p_password;
         }
         $persona_detalles = array(
             'p_email' => $p_email,
@@ -66,7 +66,14 @@ class Registrar extends CI_Controller {
             //echo $idUsuario['PK_u_id'].' '.$FK_id_p['PK_p_id']; 
             $this->output->set_status_header(200);
             //redireccionar
+            redirect('registrar/preguntasUsuario', 'refresh'); 
         }
         
-	}
+    }
+    public function preguntasUsuario(){
+        $this->load->view('templates/header');
+		$this->load->view('templates/nav');
+		$this->load->view('usuario/preguntasUsu');
+        $this->load->view('templates/footer');
+    }
 }
