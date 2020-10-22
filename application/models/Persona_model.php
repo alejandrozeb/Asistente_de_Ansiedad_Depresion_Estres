@@ -17,6 +17,15 @@ class Persona_model extends CI_Model{
         else
             return null;
     }
+    public function verificarEmail($email){
+        $query = $this->db->select('PK_p_id')
+        ->where('p_email', $email)
+        ->get('persona');
+        if(isset($query))
+            return $query->row_array();
+        else
+            return null;
+            }
 }
 
 ?>

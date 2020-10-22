@@ -25,7 +25,14 @@ class Doctor extends CI_Controller {
             $p_email = $this->input->post('p_email');
             $p_password =md5($this->input->post('p_password'));
             //echo ' '.$d_nombre.' '.$d_apellido.' '.$d_telefono.' '.$p_email.' '.$p_password;
-		}
+        }
+        $verificaemail=$this->Persona_model->verificarEmail($p_email);
+        if($verificaemail!=null){
+            $this->output->set_status_header(301);
+            echo "<script>alert('Email ya registrado')</script>";
+            redirect('registrar', 'refresh');  
+            exit;
+        }
 		$persona_detalles = array(
             'p_email' => $p_email,
             'p_password' => $p_password

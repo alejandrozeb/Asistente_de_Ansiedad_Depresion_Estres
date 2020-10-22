@@ -29,6 +29,13 @@ class Registrar extends CI_Controller {
             $p_password =md5($this->input->post('p_password'));
             //echo ' '.$u_nombre.' '.$u_apellido.' '.$u_date.' '.$u_telefono.' '.$u_genero.' '.$p_email.' '.$p_password;
         }
+        $verificaemail=$this->Persona_model->verificarEmail($p_email);
+        if($verificaemail!=null){
+            $this->output->set_status_header(301);
+            echo "<script>alert('Email ya registrado')</script>";
+            redirect('registrar', 'refresh');  
+            exit;
+        }
         $persona_detalles = array(
             'p_email' => $p_email,
             'p_password' => $p_password
