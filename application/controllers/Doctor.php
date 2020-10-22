@@ -5,6 +5,7 @@ class Doctor extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
         $this->load->model('Persona_model');
+        $this->load->model('Doctor_model');
 
 	} 
 
@@ -18,12 +19,48 @@ class Doctor extends CI_Controller {
     public function registrarDoctor()
 	{
 		if($this->input->post('d_registrar')){
-            $u_nombre=$this->input->post('d_nombre');
-            $u_apellido = $this->input->post('d_apellido');
-            $u_telefono = $this->input->post('d_telefono');
+            $d_nombre=$this->input->post('d_nombre');
+            $d_apellido = $this->input->post('d_apellido');
+            $d_telefono = $this->input->post('d_telefono');
             $p_email = $this->input->post('p_email');
             $p_password =md5($this->input->post('p_password'));
-            echo ' '.$u_nombre.' '.$u_apellido.' '.$u_telefono.' '.$p_email.' '.$p_password;
+            echo ' '.$d_nombre.' '.$d_apellido.' '.$d_telefono.' '.$p_email.' '.$p_password;
+		}
+		$persona_detalles = array(
+            'p_email' => $p_email,
+            'p_password' => $p_password
+        );
+        if(!$this->Persona_model->insertarPersona($persona_detalles)){
+            $this->output->set_status_header(500);
+            echo json_encode(array('msg' => 'Error al crear la instancia Persona'));
+            exit;
+        }else{
+            $FK_id_p=$this->Persona_model->obtenerId($p_email);
+            if($FK_id_p==null){
+                $this->output->set_status_header(500);
+                echo json_encode(array('msg' => 'Error al obtener el id'));
+                exit;
+            }
+            $doctor_detalles = array(
+                'd_nombre' => $d_nombre,
+                'd_apellido' => $d_apellido,
+                'd_telefono' => $d_telefono,
+                'FK_p_id' =>$FK_id_p['PK_p_id']
+            );
+            if(!$this->Doctor_model->insertarDoctor($doctor_detalles)){
+                $this->output->set_status_header(500);
+                echo json_encode(array('msg' => 'Error al crear Doctor'));
+                exit;
+            }
+            $idDoctor=$this->Doctor_model->obtenerIdDoctor($FK_id_p['PK_p_id']);
+            if($idDoctor==null){
+                $this->output->set_status_header(500);
+                echo json_encode(array('msg' => 'Error al obtener id'));
+                exit;
+            }
+            echo 'Id Doctor'.$idDoctor['PK_d_id'].' id Persona'.$FK_id_p['PK_p_id']; 
+            $this->output->set_status_header(200);
+            //redireccionar
         }
     }
     
