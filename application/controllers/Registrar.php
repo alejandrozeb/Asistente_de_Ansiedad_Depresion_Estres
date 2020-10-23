@@ -103,6 +103,9 @@ class Registrar extends CI_Controller {
             exit;
         }else{
             $this->output->set_status_header(200);
+            $_SESSION['p_id']=$data['PK_p_id'];
+            $idUsuario = $this->Usuario_model->obtenerIdUsuario($data['PK_p_id']);
+            $_SESSION['u_id']= $idUsuario['PK_u_id']; 
 			//redireccionar
 			redirect('registrar/preguntasUsuario', 'refresh');
         }
@@ -113,5 +116,10 @@ class Registrar extends CI_Controller {
 		$this->load->view('usuario/preguntasUsu');
         $this->load->view('templates/footer');
     }
+    public function logoutUsuario(){
+		session_unset();
+		session_destroy();
+		redirect('home','refresh');
+	}
    
 }

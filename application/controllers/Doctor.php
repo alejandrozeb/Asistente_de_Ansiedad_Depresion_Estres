@@ -109,6 +109,12 @@ class Doctor extends CI_Controller {
 		$this->load->view('templates/nav');
 		$this->load->view('doctor/resultadosDoc');
 		$this->load->view('templates/footer');
+    }
+    
+    public function logoutDoctor(){
+		session_unset();
+		session_destroy();
+		redirect('home','refresh');
 	}
     
 }
