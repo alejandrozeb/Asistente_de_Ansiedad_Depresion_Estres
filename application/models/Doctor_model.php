@@ -17,6 +17,12 @@ class Doctor_model extends CI_Model{
         else
             return null;
     }
+    public function verificaDoctor($FK_p_id){
+        if(!$this->db->where('FK_p_id',$FK_p_id))
+            return false;
+        else 
+            return true;
+    }
 }
 
 ?>

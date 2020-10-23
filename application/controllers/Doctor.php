@@ -82,7 +82,25 @@ class Doctor extends CI_Controller {
         if($this->input->post('d_login')){
             $p_email = $this->input->post('p_email');
             $p_password =md5($this->input->post('p_password'));
-            echo 'Email: '.$p_email.' password: '.$p_password;
+        }
+        $data=$this->Persona_model->loginPersona($p_email,$p_password);
+        if($data==null){
+            $this->output->set_status_header(500);
+            echo "<script>alert('No estas registrado')</script>";
+            redirect('Doctor/ingresaDoctor', 'refresh');
+            exit;
+        }
+        if(!$this->Doctor_model->verificaDoctor($data['PK_p_id'])){
+            //error
+            echo 'error';
+            $this->output->set_status_header(500);
+            echo "<script>alert('Debes Registrarte como doctor')</script>";
+            redirect('Doctor/ingresaDoctor', 'refresh');
+            exit;
+        }else{
+            $this->output->set_status_header(200);
+			//redireccionar
+			redirect('Doctor/resultadosDoctor', 'refresh');
         }
     }
 	

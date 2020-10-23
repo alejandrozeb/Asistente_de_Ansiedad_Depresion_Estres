@@ -25,7 +25,17 @@ class Persona_model extends CI_Model{
             return $query->row_array();
         else
             return null;
-            }
+    }
+    public function loginPersona($p_email,$p_password){
+        $query = $this->db->select('PK_p_id')
+                ->where('p_email', $p_email)
+                ->where('p_password', $p_password)
+                ->get('persona');
+        if(isset($query))
+            return $query->row_array();
+        else
+            return null;
+    }
 }
 
 ?>
