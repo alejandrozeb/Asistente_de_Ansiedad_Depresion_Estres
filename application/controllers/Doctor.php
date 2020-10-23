@@ -30,7 +30,7 @@ class Doctor extends CI_Controller {
         if($verificaemail!=null){
             $this->output->set_status_header(301);
             echo "<script>alert('Email ya registrado')</script>";
-            redirect('registrar', 'refresh');  
+            redirect('Doctor', 'refresh');  
             exit;
         }
 		$persona_detalles = array(
@@ -70,7 +70,21 @@ class Doctor extends CI_Controller {
 			//redireccionar
 			redirect('Doctor/resultadosDoctor', 'refresh'); 
         }
-	}
+    }
+    
+    public function ingresaDoctor(){
+        $this->load->view('templates/header');
+		$this->load->view('templates/nav');
+		$this->load->view('doctor/loginDoctor');
+		$this->load->view('templates/footer');
+    }
+    public function ingresarDocProceso(){
+        if($this->input->post('d_login')){
+            $p_email = $this->input->post('p_email');
+            $p_password =md5($this->input->post('p_password'));
+            echo 'Email: '.$p_email.' password: '.$p_password;
+        }
+    }
 	
 	public function resultadosDoctor(){
 		$this->load->view('templates/header');

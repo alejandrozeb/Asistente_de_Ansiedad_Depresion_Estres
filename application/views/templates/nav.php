@@ -1,15 +1,13 @@
-<nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Hi <small>hi</small></a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><button type="button" class="btn btn-default navbar-btn">Registrate</button></li>
-                    <li><button type="button" class="btn btn-default navbar-btn">Iniciar Sesión</button></li>
-                    <li><a class="" href="#">Log Out</a></li>
-                </ul>
-            </div>
+  <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Ingresar</a></li>
+            <li><a href="badges.html">Registrate</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+        </ul>
         </div>
     </nav>
+  </div>
     
