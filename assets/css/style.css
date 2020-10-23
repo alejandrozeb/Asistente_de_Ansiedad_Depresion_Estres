@@ -1,0 +1,8 @@
+@font-face{
+    font-family: Roboto;
+    src: url(./../fonts/roboto/Roboto-Light.ttf);
+}
+/* todo */
+*{
+    font-family: Roboto;
+}
