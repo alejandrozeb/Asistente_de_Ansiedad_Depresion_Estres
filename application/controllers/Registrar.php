@@ -129,6 +129,5 @@ class Registrar extends CI_Controller {
 		session_unset();
 		session_destroy();
 		redirect('home','refresh');
-	}
-   
+    }
 }
