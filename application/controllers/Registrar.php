@@ -125,6 +125,16 @@ class Registrar extends CI_Controller {
 		$this->load->view('usuario/preguntasUsu');
         $this->load->view('usuario/templatesUsu/footer');
     }
+    public function preguntasUsuarioProceso(){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        /* if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        } */
+        $form=$this->input->post('u_preguntas');
+        echo $idPer_sesion.' '.$idUsu_sesion.' '.$form;
+    }
+
     public function logoutUsuario(){
 		session_unset();
 		session_destroy();

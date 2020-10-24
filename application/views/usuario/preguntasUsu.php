@@ -12,7 +12,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
               <div class="panel panel-default" style="margin-top: 50px">
                   <div class="panel-heading flow-text">Cuestionario</div>
                   <div class="panel-body">
-                      <?php echo form_open(''); //link al url del controlador que recibe los datos?>
+                      <?php echo form_open('/registrar/preguntasUsuarioProceso'); //link al url del controlador que recibe los datos?>
                       <div class="form-group">
                         <!-- pregunta Ini -->
                         <label class="flow-text" for="u_pre1">No conseguí tener ningún sentimiento positivo</label>
