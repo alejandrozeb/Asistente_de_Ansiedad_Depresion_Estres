@@ -12,6 +12,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/materialize.min.js"></script>
   </body>
+
     <footer class="page-footer">
           <div class="container">
             <div class="row">
@@ -36,5 +37,5 @@ if($idPer_sesion==null || $idUsu_sesion==null){
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
           </div>
-        </footer>
+     </footer>
 </html>
