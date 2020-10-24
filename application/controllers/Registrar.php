@@ -128,11 +128,30 @@ class Registrar extends CI_Controller {
     public function preguntasUsuarioProceso(){
         $idPer_sesion = $this->session->userdata('persona');
         $idUsu_sesion = $this->session->userdata('usuario');
-        /* if($idPer_sesion==null || $idUsu_sesion==null){
+        if($idPer_sesion==null || $idUsu_sesion==null){
             redirect('registrar/ingresaUsuario','refresh');
-        } */
+        }
         $form=$this->input->post('u_preguntas');
-        echo $idPer_sesion.' '.$idUsu_sesion.' '.$form;
+        $u_pre1=$this->input->post('u_pre1');
+        $u_pre2=$this->input->post('u_pre2');
+        $u_pre3=$this->input->post('u_pre3');
+        $u_pre4=$this->input->post('u_pre4');
+        $u_pre5=$this->input->post('u_pre5');
+        $u_pre6=$this->input->post('u_pre6');
+        $u_pre7=$this->input->post('u_pre7');
+        echo $idPer_sesion.' '.$idUsu_sesion.' '.$form.' '.$form1.' '.$form2;
+        //crear directorio
+
+        //crear json
+
+        //guardar json con respuestas y fecha  en directorio
+
+        //calculos
+
+        //guardar en bd
+        
+        //desplegar vista de resultados
+
     }
 
     public function logoutUsuario(){

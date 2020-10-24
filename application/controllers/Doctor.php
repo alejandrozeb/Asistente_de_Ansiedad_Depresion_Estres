@@ -99,6 +99,7 @@ class Doctor extends CI_Controller {
             exit;
         }else{
             $this->output->set_status_header(200);
+            $_SESSION['u_name']= $user_data['u_name'];
 			//redireccionar
 			redirect('Doctor/resultadosDoctor', 'refresh');
         }
