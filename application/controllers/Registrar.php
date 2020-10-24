@@ -103,18 +103,27 @@ class Registrar extends CI_Controller {
             exit;
         }else{
             $this->output->set_status_header(200);
-            $_SESSION['p_id']=$data['PK_p_id'];
-            $idUsuario = $this->Usuario_model->obtenerIdUsuario($data['PK_p_id']);
-            $_SESSION['u_id']= $idUsuario['PK_u_id']; 
+            $Usuario = $this->Usuario_model->obtenerUsuario($data['PK_p_id']);
+                    $idPersona=$data['PK_p_id'];
+                    $idUsuario=$Usuario['Pk_u_id'];
+                    $data=array(
+                        'persona' => $idPersona,
+                        'usuario' => $idUsuario,
+                        'nombre' => $Usuario['u_nombre'],
+                        'apellido' => $Usuario['u_apellido'],
+                        'is_logged' => TRUE
+                    );
+                    $this->session->set_userdata($data); 
+                //var_dump($data);
 			//redireccionar
 			redirect('registrar/preguntasUsuario', 'refresh');
         }
      }
     public function preguntasUsuario(){
-        $this->load->view('templates/header');
-		$this->load->view('templates/nav');
+        $this->load->view('usuario/templatesUsu/header');
+		$this->load->view('usuario/templatesUsu/nav');
 		$this->load->view('usuario/preguntasUsu');
-        $this->load->view('templates/footer');
+        $this->load->view('usuario/templatesUsu/footer');
     }
     public function logoutUsuario(){
 		session_unset();

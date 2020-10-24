@@ -17,6 +17,15 @@ class Usuario_model extends CI_Model{
         else
             return null;
     }
+    public function obtenerUsuario($FK_p_id){
+        $query = $this->db->select('*')
+                ->where('FK_p_id', $FK_p_id)
+                ->get('usuario');
+        if(isset($query))
+            return $query->row_array();
+        else
+            return null;
+    }
     public function verificaUsuario($FK_p_id){
         $query = $this->db->get_where('usuario', array('FK_p_id' => $FK_p_id));
         if($query->row_array()==null)

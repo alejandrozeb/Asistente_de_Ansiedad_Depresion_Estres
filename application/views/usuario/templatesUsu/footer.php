@@ -1,5 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+/* $idPer_sesion = $this->session->userdata('persona');
+$idUsu_sesion = $this->session->userdata('usuario');
+if($idPer_sesion==null || $idUsu_sesion==null){
+    redirect('registrar/ingresaUsuario','refresh');
+} */
 ?>
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>

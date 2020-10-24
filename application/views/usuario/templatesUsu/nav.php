@@ -1,5 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+/* if(!$_SESSION['p_id'] && !$_SESSION['u_id']){
+    //echo 'no tienes acceso';
+    redirect('home','refresh');
+} */
 ?>
   <div class="navbar-fixed">
     <nav>

@@ -1,8 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-if(!$_SESSION['p_id'] && !$_SESSION['u_id']){
-    echo 'no tienes acceso';
-    //redirect('home','refresh');
+$idPer_sesion = $this->session->userdata('persona');
+$idUsu_sesion = $this->session->userdata('usuario');
+if($idPer_sesion==null || $idUsu_sesion==null){
+    redirect('registrar/ingresaUsuario','refresh');
 }
 ?>
 <div class="container">
