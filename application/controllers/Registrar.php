@@ -6,6 +6,7 @@ class Registrar extends CI_Controller {
 		parent::__construct();
         $this->load->model('Persona_model');
         $this->load->model('Usuario_model');
+        $this->load->helper('path');
 
 	} 
 
@@ -132,6 +133,7 @@ class Registrar extends CI_Controller {
             redirect('registrar/ingresaUsuario','refresh');
         }
         $form=$this->input->post('u_preguntas');
+        /* ansiedad */
         $u_pre1=$this->input->post('u_pre1');
         $u_pre2=$this->input->post('u_pre2');
         $u_pre3=$this->input->post('u_pre3');
@@ -139,19 +141,73 @@ class Registrar extends CI_Controller {
         $u_pre5=$this->input->post('u_pre5');
         $u_pre6=$this->input->post('u_pre6');
         $u_pre7=$this->input->post('u_pre7');
-        echo $idPer_sesion.' '.$idUsu_sesion.' '.$form.' '.$form1.' '.$form2;
+        /* depresion */
+        $u_pre8=$this->input->post('u_pre8');
+        $u_pre9=$this->input->post('u_pre9');
+        $u_pre10=$this->input->post('u_pre10');
+        $u_pre11=$this->input->post('u_pre11');
+        $u_pre12=$this->input->post('u_pre12');
+        $u_pre13=$this->input->post('u_pre13');
+        $u_pre14=$this->input->post('u_pre14');
+        /* estres */
+        $u_pre15=$this->input->post('u_pre15');
+        $u_pre16=$this->input->post('u_pre16');
+        $u_pre17=$this->input->post('u_pre17');
+        $u_pre18=$this->input->post('u_pre18');
+        $u_pre19=$this->input->post('u_pre19');
+        $u_pre20=$this->input->post('u_pre20');
+        $u_pre21=$this->input->post('u_pre21');
+
+        $arrayRespuestas = array(
+            'pre1' => $u_pre1,
+            'pre2' => $u_pre2,
+            'pre3' => $u_pre3,
+            'pre4' => $u_pre4,
+            'pre5' => $u_pre5,
+            'pre6' => $u_pre6,
+            'pre7' => $u_pre7,
+            'pre8' => $u_pre8,
+            'pre9' => $u_pre9,
+            'pre10' => $u_pre10,
+            'pre11' => $u_pre11,
+            'pre12' => $u_pre12,
+            'pre13' => $u_pre13,
+            'pre14' => $u_pre14,
+            'pre15' => $u_pre15,
+            'pre16' => $u_pre16,
+            'pre17' => $u_pre17,
+            'pre18' => $u_pre18,
+            'pre19' => $u_pre19,
+            'pre20' => $u_pre20,
+            'pre21' => $u_pre21
+        );
+        var_dump($arrayRespuestas);
+        echo $idPer_sesion.' '.$idUsu_sesion;
         //crear directorio
-
+        $this->crearDirectorio($idPer_sesion,$idUsu_sesion);
         //crear json
-
-        //guardar json con respuestas y fecha  en directorio
-
+        $dir=$this->crearJson($arrayRespuestas,$idPer_sesion,$idUsu_sesion);
         //calculos
 
         //guardar en bd
         
         //desplegar vista de resultados
 
+    }
+    //devuelve la ruta completa o la ruta creada con el .
+    public function crearDirectorio($idPer_sesion,$idUsu_sesion){
+        //devolver ruta
+        $dir=set_realpath('./resultados/'.$idPer_sesion.$idUsu_sesion."/");
+        if(!is_dir($dir)){ 
+            mkdir($dir,777);
+        }
+        return $dir;
+    }
+    public function crearJson($arrayRespuestas,$idPer_sesion,$idUsu_sesion){
+        $json_string = json_encode($arrayRespuestas);
+        $file = './resultados/'.$idPer_sesion.$idUsu_sesion.'/'.$idPer_sesion.$idUsu_sesion.'resp.json';
+        file_put_contents($file, $json_string);
+        return $file;
     }
 
     public function logoutUsuario(){

@@ -99,7 +99,17 @@ class Doctor extends CI_Controller {
             exit;
         }else{
             $this->output->set_status_header(200);
-            $_SESSION['u_name']= $user_data['u_name'];
+            $doctor = $this->Usuario_model->obtenerDoctor($data['PK_p_id']);
+                    $idPersona=$data['PK_p_id'];
+                    $idDoctor=$doctor['Pk_u_id'];
+                    $data=array(
+                        'persona' => $idPersona,
+                        'usuario' => $idUsuario,
+                        'nombre' => $doctor['d_nombre'],
+                        'apellido' => $doctor['d_apellido'],
+                        'is_logged' => TRUE
+                    );
+                    $this->session->set_userdata($data);
 			//redireccionar
 			redirect('Doctor/resultadosDoctor', 'refresh');
         }
