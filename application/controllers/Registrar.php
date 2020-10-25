@@ -210,7 +210,7 @@ class Registrar extends CI_Controller {
         //guardar en bd
         if(!$this->Test_model->insertarTest($usuario_resultados)){
             $this->output->set_status_header(500);
-            echo "<script>alert('Error al insertar')</script>";
+            echo "Error al insertar";
             redirect('registrar/preguntasUsuario', 'refresh');
             exit;
         }
@@ -218,11 +218,19 @@ class Registrar extends CI_Controller {
         $ansiedadData=$this->ansiedadUsuProceso($ansiedad_result);
         $depresionData=$this->depresionUsuProceso($depresion_result);
         $estresData=$this->estresUsuProceso($estres_result);
-        var_dump($ansiedadData);
-        var_dump($depresionData);
-        var_dump($estresData);
-        //llamar las funciones
-
+        //desplegar
+        $data=array(
+            'ansiedad' => $ansiedadData,
+            'depresion' => $depresionData,
+            'estres' => $estresData,
+        );
+        $this->session->flashdata($data);
+        redirect('registrar/resultadoUsuario', 'refresh');
+    }
+    public function resultadoUsuario(){
+        $this->load->view('templates/header');
+		$this->load->view('templates/nav');
+		$this->load->view('templates/footer');
     }
     //devuelve la ruta completa o la ruta creada con el .
     public function crearDirectorio($idPer_sesion,$idUsu_sesion){
