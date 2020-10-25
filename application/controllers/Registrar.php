@@ -188,10 +188,22 @@ class Registrar extends CI_Controller {
         //crear json
         $date=date('Y-m-d-H-i-s');
         $dir=$this->crearJson($arrayRespuestas,$idPer_sesion,$idUsu_sesion,$date);
+        echo '<br>';
+        echo $dir;
         //calculos
-        $ansiedad_result=;
-        $depresion_result=;
-        $estres_result=;
+        $ansiedad_result=$u_pre1+$u_pre2+$u_pre3+$u_pre4+$u_pre5+$u_pre6+$u_pre7;
+        $depresion_result=$u_pre8+$u_pre9+$u_pre10+$u_pre11+$u_pre12+$u_pre13+$u_pre14;
+        $estres_result=$u_pre15+$u_pre16+$u_pre17+$u_pre18+$u_pre19+$u_pre20+$u_pre21;;
+        echo '<br>';
+
+        $usuario_resultados = array(
+            'u_nombre' => $u_nombre,
+            'u_apellido' => $u_apellido,
+            'u_fechanac' => $u_date,
+            'u_telefono' => $u_telefono,
+            'u_sexo' => $u_genero,
+            'FK_p_id' =>$FK_id_p['PK_p_id']
+        );
         //guardar en bd
         
         //desplegar vista de resultados
@@ -211,6 +223,15 @@ class Registrar extends CI_Controller {
         $file = './resultados/'.$idPer_sesion.$idUsu_sesion.'/'.$idPer_sesion.$idUsu_sesion.$date.'resp.json';
         file_put_contents($file, $json_string);
         return $file;
+    }
+    public function procesoansiedadUsu($ansiedad){
+
+    }
+    public function procesodepresionUsu($depresion){
+        
+    }
+    public function procesoestresUsu($estres){
+        
     }
 
     public function logoutUsuario(){
