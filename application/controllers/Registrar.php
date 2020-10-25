@@ -6,6 +6,7 @@ class Registrar extends CI_Controller {
 		parent::__construct();
         $this->load->model('Persona_model');
         $this->load->model('Usuario_model');
+        $this->load->model('Test_model');
         $this->load->helper('path');
 
 	} 
@@ -207,7 +208,12 @@ class Registrar extends CI_Controller {
         );
         var_dump($usuario_resultados);
         //guardar en bd
-        
+        if(!$this->Test_model->insertarTest($usuario_resultados)){
+            $this->output->set_status_header(500);
+            echo "<script>alert('Error al insertar')</script>";
+            redirect('registrar/preguntasUsuario', 'refresh');
+            exit;
+        }
         //desplegar vista de resultados
         $ansiedadData=$this->ansiedadUsuProceso($ansiedad_result);
         $depresionData=$this->depresionUsuProceso($depresion_result);
