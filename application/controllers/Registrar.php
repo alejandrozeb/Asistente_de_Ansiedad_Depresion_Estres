@@ -209,7 +209,12 @@ class Registrar extends CI_Controller {
         //guardar en bd
         
         //desplegar vista de resultados
-
+        $ansiedadData=$this->ansiedadUsuProceso($ansiedad_result);
+        $depresionData=$this->depresionUsuProceso($depresion_result);
+        $estresData=$this->estresUsuProceso($estres_result);
+        var_dump($ansiedadData);
+        var_dump($depresionData);
+        var_dump($estresData);
         //llamar las funciones
 
     }
@@ -229,13 +234,109 @@ class Registrar extends CI_Controller {
         return $file;
     }
     public function ansiedadUsuProceso($ansiedad){
-
+        $resultado;
+        if($ansiedad <=3){
+            $resultado = array(
+                'resultado' => 'nada',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if ($ansiedad == 4){
+            $resultado = array(
+                'resultado' => 'leve',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($ansiedad >= 5 && $ansiedad <= 7){
+            $resultado = array(
+                'resultado' => 'moderada',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($ansiedad >= 8 && $ansiedad <= 9){
+            $resultado = array(
+                'resultado' => 'severa',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($ansiedad >= 10){
+            $resultado = array(
+                'resultado' => 'extremadamente severo',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }
+        return $resultado;
     }
     public function depresionUsuProceso($depresion){
-        
+        $resultado;
+        if($depresion<=4){
+            $resultado = array(
+                'resultado' => 'nada',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if ($depresion >= 5 && $depresion <= 6 ){
+            $resultado = array(
+                'resultado' => 'leve',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($depresion >= 7 && $depresion <= 10){
+            $resultado = array(
+                'resultado' => 'moderada',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($depresion >= 11 && $depresion <= 13){
+            $resultado = array(
+                'resultado' => 'severa',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($depresion >= 14){
+            $resultado = array(
+                'resultado' => 'extremadamente severo',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }
+        return $resultado;
     }
     public function estresUsuProceso($estres){
-        
+        $resultado;
+        if($estres <= 7){
+            $resultado = array(
+                'resultado' => 'nada',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if ($estres >= 8 && $estres <= 9 ){
+            $resultado = array(
+                'resultado' => 'leve',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($estres >= 10 && $estres <= 12){
+            $resultado = array(
+                'resultado' => 'moderada',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($estres >= 13 && $estres <= 16){
+            $resultado = array(
+                'resultado' => 'severa',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }else if($estres >= 17){
+            $resultado = array(
+                'resultado' => 'extremadamente severo',
+                'respuesta' => '',
+                'consejo' => '',
+            );
+        }
+        return $resultado;
     }
 
     public function logoutUsuario(){
