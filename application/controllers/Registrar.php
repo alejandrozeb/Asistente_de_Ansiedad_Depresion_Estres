@@ -186,9 +186,12 @@ class Registrar extends CI_Controller {
         //crear directorio
         $this->crearDirectorio($idPer_sesion,$idUsu_sesion);
         //crear json
-        $dir=$this->crearJson($arrayRespuestas,$idPer_sesion,$idUsu_sesion);
+        $date=date('Y-m-d-H-i-s');
+        $dir=$this->crearJson($arrayRespuestas,$idPer_sesion,$idUsu_sesion,$date);
         //calculos
-
+        $ansiedad_result=;
+        $depresion_result=;
+        $estres_result=;
         //guardar en bd
         
         //desplegar vista de resultados
@@ -203,9 +206,9 @@ class Registrar extends CI_Controller {
         }
         return $dir;
     }
-    public function crearJson($arrayRespuestas,$idPer_sesion,$idUsu_sesion){
+    public function crearJson($arrayRespuestas,$idPer_sesion,$idUsu_sesion,$date){
         $json_string = json_encode($arrayRespuestas);
-        $file = './resultados/'.$idPer_sesion.$idUsu_sesion.'/'.$idPer_sesion.$idUsu_sesion.'resp.json';
+        $file = './resultados/'.$idPer_sesion.$idUsu_sesion.'/'.$idPer_sesion.$idUsu_sesion.$date.'resp.json';
         file_put_contents($file, $json_string);
         return $file;
     }
