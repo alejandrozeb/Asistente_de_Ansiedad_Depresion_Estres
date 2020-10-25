@@ -197,16 +197,20 @@ class Registrar extends CI_Controller {
         echo '<br>';
 
         $usuario_resultados = array(
-            'u_nombre' => $u_nombre,
-            'u_apellido' => $u_apellido,
-            'u_fechanac' => $u_date,
-            'u_telefono' => $u_telefono,
-            'u_sexo' => $u_genero,
-            'FK_p_id' =>$FK_id_p['PK_p_id']
+            't_respuestas' => $dir,
+            't_fecha' => $date,
+            't_ansiedadpuntos' => $ansiedad_result,
+            't_depresionpuntos' => $depresion_result,
+            't_estrespuntos' => $estres_result,
+            'FK_p_id' =>$idPer_sesion,
+            'FK_u_id' =>$idUsu_sesion
         );
+        var_dump($usuario_resultados);
         //guardar en bd
         
         //desplegar vista de resultados
+
+        //llamar las funciones
 
     }
     //devuelve la ruta completa o la ruta creada con el .
@@ -224,13 +228,13 @@ class Registrar extends CI_Controller {
         file_put_contents($file, $json_string);
         return $file;
     }
-    public function procesoansiedadUsu($ansiedad){
+    public function ansiedadUsuProceso($ansiedad){
 
     }
-    public function procesodepresionUsu($depresion){
+    public function depresionUsuProceso($depresion){
         
     }
-    public function procesoestresUsu($estres){
+    public function estresUsuProceso($estres){
         
     }
 
