@@ -123,7 +123,6 @@ class Registrar extends CI_Controller {
      }
     public function preguntasUsuario(){
         $this->load->view('usuario/templatesUsu/header');
-        
 		$this->load->view('usuario/preguntasUsu');
         $this->load->view('usuario/templatesUsu/footer');
     }
@@ -225,7 +224,6 @@ class Registrar extends CI_Controller {
 
     public function resultadoUsuarioAEE(){
         $this->load->view('usuario/templatesUsu/header');
-		$this->load->view('usuario/templatesUsu/nav');
 		$this->load->view('usuario/resultadoUsu');
         $this->load->view('usuario/templatesUsu/footer');
     }
