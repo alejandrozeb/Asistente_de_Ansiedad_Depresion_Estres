@@ -213,24 +213,27 @@ class Registrar extends CI_Controller {
             echo "Error al insertar";
             redirect('registrar/preguntasUsuario', 'refresh');
             exit;
-        }
-        //desplegar vista de resultados
-        $ansiedadData=$this->ansiedadUsuProceso($ansiedad_result);
-        $depresionData=$this->depresionUsuProceso($depresion_result);
-        $estresData=$this->estresUsuProceso($estres_result);
-        //desplegar
-        $data=array(
-            'ansiedad' => $ansiedadData,
-            'depresion' => $depresionData,
-            'estres' => $estresData,
-        );
-        $this->session->flashdata($data);
-        redirect('registrar/resultadoUsuario', 'refresh');
+        }else{
+            //desplegar vista de resultados
+            $ansiedadData=$this->ansiedadUsuProceso($ansiedad_result);
+            $depresionData=$this->depresionUsuProceso($depresion_result);
+            $estresData=$this->estresUsuProceso($estres_result);
+            //desplegar
+            $data=array(
+                'ansiedad' => $ansiedadData,
+                'depresion' => $depresionData,
+                'estres' => $estresData,
+            );
+            $this->session->set_userdata('data', $data);
+            redirect('registrar/resultadoUsuarioAEE', 'refresh');
+        }    
     }
-    public function resultadoUsuario(){
-        $this->load->view('templates/header');
-		$this->load->view('templates/nav');
-		$this->load->view('templates/footer');
+
+    public function resultadoUsuarioAEE(){
+        $this->load->view('usuario/templatesUsu/header');
+		$this->load->view('usuario/templatesUsu/nav');
+		$this->load->view('usuario/resultadoUsu');
+        $this->load->view('usuario/templatesUsu/footer');
     }
     //devuelve la ruta completa o la ruta creada con el .
     public function crearDirectorio($idPer_sesion,$idUsu_sesion){
