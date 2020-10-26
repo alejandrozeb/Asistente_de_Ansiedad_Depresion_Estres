@@ -123,7 +123,7 @@ class Registrar extends CI_Controller {
      }
     public function preguntasUsuario(){
         $this->load->view('usuario/templatesUsu/header');
-		$this->load->view('usuario/templatesUsu/nav');
+        
 		$this->load->view('usuario/preguntasUsu');
         $this->load->view('usuario/templatesUsu/footer');
     }
@@ -182,20 +182,15 @@ class Registrar extends CI_Controller {
             'pre20' => $u_pre20,
             'pre21' => $u_pre21
         );
-        var_dump($arrayRespuestas);
-        echo $idPer_sesion.' '.$idUsu_sesion;
         //crear directorio
         $this->crearDirectorio($idPer_sesion,$idUsu_sesion);
         //crear json
         $date=date('Y-m-d-H-i-s');
         $dir=$this->crearJson($arrayRespuestas,$idPer_sesion,$idUsu_sesion,$date);
-        echo '<br>';
-        echo $dir;
         //calculos
         $ansiedad_result=$u_pre1+$u_pre2+$u_pre3+$u_pre4+$u_pre5+$u_pre6+$u_pre7;
         $depresion_result=$u_pre8+$u_pre9+$u_pre10+$u_pre11+$u_pre12+$u_pre13+$u_pre14;
         $estres_result=$u_pre15+$u_pre16+$u_pre17+$u_pre18+$u_pre19+$u_pre20+$u_pre21;;
-        echo '<br>';
 
         $usuario_resultados = array(
             't_respuestas' => $dir,
@@ -206,7 +201,6 @@ class Registrar extends CI_Controller {
             'FK_p_id' =>$idPer_sesion,
             'FK_u_id' =>$idUsu_sesion
         );
-        var_dump($usuario_resultados);
         //guardar en bd
         if(!$this->Test_model->insertarTest($usuario_resultados)){
             $this->output->set_status_header(500);
