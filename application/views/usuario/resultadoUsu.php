@@ -23,7 +23,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
   </div>
 <div class="container">
     <div class="row">
-        <div class="col s12 m7">    
+        <div class="col s12 m12 l6">    
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="<?php echo base_url('imagenes/InfografiaAnsiedad.jpg')?>">
@@ -35,12 +35,14 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                 <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">Ansiedad<i class="material-icons right">close</i></span>
                 <p>
-                    <h1><?php echo $dataTest['ansiedad']['resultado'];?></h1>
+                    <h2><?php echo $dataTest['ansiedad']['resultado'];?></h2>
                     <p>Respuesta : <?php echo $dataTest['ansiedad']['respuesta']; ?> </p>
                     <p>Consejo : <?php echo $dataTest['ansiedad']['consejo']; ?> </p>
                 </p>
                 </div>
             </div>
+        </div>
+        <div class="col s12 m12 l6">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="<?php echo base_url('imagenes/InfografiaAnsiedad.jpg')?>">
@@ -52,12 +54,14 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                 <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">Depresión<i class="material-icons right">close</i></span>
                 <p>
-                    <h1><?php echo $dataTest['depresion']['resultado'];?></h1>
+                    <h3><?php echo $dataTest['depresion']['resultado'];?></h3>
                     <p>Respuesta : <?php echo $dataTest['depresion']['respuesta']; ?> </p>
                     <p>Consejo : <?php echo $dataTest['depresion']['consejo']; ?> </p>
                 </p>
                 </div>
             </div>
+        </div>
+        <div class="col s12 m12 l6">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="<?php echo base_url('imagenes/InfografiaAnsiedad.jpg')?>">
@@ -69,7 +73,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                 <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">Estres<i class="material-icons right">close</i></span>
                 <p>
-                    <h1><?php echo $dataTest['estres']['resultado'];?></h1>
+                    <h2><?php echo $dataTest['estres']['resultado'];?></h2>
                     <p>Respuesta : <?php echo $dataTest['estres']['respuesta']; ?> </p>
                     <p>Consejo : <?php echo $dataTest['estres']['consejo']; ?> </p>
                 </p>
