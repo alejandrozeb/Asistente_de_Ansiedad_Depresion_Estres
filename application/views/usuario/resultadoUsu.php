@@ -62,11 +62,11 @@ if($idPer_sesion==null || $idUsu_sesion==null){
             </div>
         </div>  
     </div>
-    <div class="row justify-content-center h-100">
+    <div class="row">
         <div class="col s12 m12 l6">
             <div class="card hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="<?php echo base_url('imagenes/InfografiaEstres.png')?>">
+                <img class="activator" src="<?php echo base_url('imagenes/InfografiaEstres2.png')?>">
                 </div>
                 <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">Estres<i class="material-icons right">more_vert</i></span>
@@ -78,6 +78,23 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                     <h2><?php echo $dataTest['estres']['resultado'];?></h2>
                     <p>Respuesta : <?php echo $dataTest['estres']['respuesta']; ?> </p>
                     <p>Consejo : <?php echo $dataTest['estres']['consejo']; ?> </p>
+                </p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m12 l6">
+            <div class="card hoverable">
+                <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="<?php echo base_url('imagenes/saludMental.jpg')?>">
+                </div>
+                <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">¿Buscas ayuda?<i class="material-icons right">more_vert</i></span>
+                <p>Contacta con un profesional aqui</p>
+                </div>
+                <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Contactate<i class="material-icons right">close</i></span>
+                <p>
+                    <h2>Podras contactar con profesionales </h2>
                 </p>
                 </div>
             </div>
