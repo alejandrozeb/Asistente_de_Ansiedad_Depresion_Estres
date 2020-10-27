@@ -24,7 +24,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
 <div class="container">
     <div class="row">
         <div class="col s12 m12 l6">    
-            <div class="card">
+            <div class="card hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="<?php echo base_url('imagenes/InfografiaAnsiedad.jpg')?>">
                 </div>
@@ -43,9 +43,9 @@ if($idPer_sesion==null || $idUsu_sesion==null){
             </div>
         </div>
         <div class="col s12 m12 l6">
-            <div class="card">
+            <div class="card hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="<?php echo base_url('imagenes/InfografiaAnsiedad.jpg')?>">
+                <img class="activator" src="<?php echo base_url('imagenes/InfografiaDepresion.jpg')?>">
                 </div>
                 <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">Depresión<i class="material-icons right">more_vert</i></span>
@@ -60,11 +60,13 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                 </p>
                 </div>
             </div>
-        </div>
+        </div>  
+    </div>
+    <div class="row justify-content-center h-100">
         <div class="col s12 m12 l6">
-            <div class="card">
+            <div class="card hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="<?php echo base_url('imagenes/InfografiaAnsiedad.jpg')?>">
+                <img class="activator" src="<?php echo base_url('imagenes/InfografiaEstres.png')?>">
                 </div>
                 <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">Estres<i class="material-icons right">more_vert</i></span>
@@ -80,6 +82,5 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                 </div>
             </div>
         </div>
-        
     </div>
 </div>
