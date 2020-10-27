@@ -259,8 +259,8 @@ class Registrar extends CI_Controller {
         }else if($ansiedad >= 5 && $ansiedad <= 7){
             $resultado = array(
                 'resultado' => 'moderada',
-                'respuesta' => '',
-                'consejo' => '',
+                'respuesta' => 'explicacion del nivel',
+                'consejo' => 'consejo de que deberia hacer',
             );
         }else if($ansiedad >= 8 && $ansiedad <= 9){
             $resultado = array(
