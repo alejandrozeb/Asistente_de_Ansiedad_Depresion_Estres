@@ -227,6 +227,10 @@ class Registrar extends CI_Controller {
 		$this->load->view('usuario/resultadoUsu');
         $this->load->view('usuario/templatesUsu/footer');
     }
+    public function estadisticaResultadoUsu(){
+        $this->load->view('usuario/estadisticaResultado.php');
+        $this->load->view('usuario/templatesUsu/footer');
+    }
     //devuelve la ruta completa o la ruta creada con el .
     public function crearDirectorio($idPer_sesion,$idUsu_sesion){
         //devolver ruta
