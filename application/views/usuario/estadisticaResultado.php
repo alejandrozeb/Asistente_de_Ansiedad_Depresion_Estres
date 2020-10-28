@@ -2,11 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $idPer_sesion = $this->session->userdata('persona');
 $idUsu_sesion = $this->session->userdata('usuario');
-$dataTest = $this->session->userdata('data');
+$dataTest = $this->session->userdata('dataTest');
 if($idPer_sesion==null || $idUsu_sesion==null){
     redirect('registrar/ingresaUsuario','refresh');
 }
-var_dump($dataTest);
+//var_dump($dataTest);
+foreach ($dataTest as $test) {
+  echo "[new Date(date.parse(".$test['t_fecha'].")),".$test['t_ansiedadpuntos'].",".$test['t_depresionpuntos'].",".$test['t_estrespuntos']."],";
+}  
 ?>
 <head>
     <meta charset="utf-8">
@@ -37,9 +40,14 @@ var_dump($dataTest);
       data.addColumn('number', 'Estres');
 
       data.addRows([
+        /* <?php 
+          foreach ($dataTest as $test) {
+            echo "['".$test['t_fecha']."',".$test['t_ansiedadpuntos'].",".$test['t_depresionpuntos'].",".$test['t_estrespuntos']."],";
+          }
+          ?> */
         [new Date(2014, 0),  37.8, 80.8, 41.8],
         [new Date(2014, 1),  30.9, 69.5, 32.4],
-        /* [new Date(2014, 2),  25.4,   57, 25.7],
+        [new Date(2014, 2),  25.4,   57, 25.7],
         [new Date(2014, 3),  11.7, 18.8, 10.5],
         [new Date(2014, 4),  11.9, 17.6, 10.4],
         [new Date(2014, 5),   8.8, 13.6,  7.7],
@@ -49,8 +57,8 @@ var_dump($dataTest);
         [new Date(2014, 9), 12.8, 30.9, 11.6],
         [new Date(2014, 10),  5.3,  7.9,  4.7],
         [new Date(2014, 11),  6.6,  8.4,  5.2],
-        [new Date(2014, 12),  4.8,  6.3,  3.6],
-        [new Date(2015, 0),  4.2,  6.2,  3.4] */
+        [new Date(2015, 0),  4.8,  6.3,  3.6],
+        [new Date(2015, 1),  4.2,  6.2,  3.4]
       ]);
 
       var options = {

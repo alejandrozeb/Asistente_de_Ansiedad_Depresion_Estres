@@ -236,7 +236,6 @@ class Registrar extends CI_Controller {
         $dataTests=$this->Test_model->obtenerTestsUsu($idPer_sesion,$idUsu_sesion);
         /* sacamos el ultimo de cada fecha */
        $dataResult= $this->seleccionaUltimaFechaTest($dataTests);
-       var_dump($dataResult);
        $dataResultTest=array();
        $i=0;
         //data 
@@ -248,7 +247,9 @@ class Registrar extends CI_Controller {
             $i++;
         }
         //enviar la data a la vista con session
+        $this->session->set_userdata('dataTest', $dataResultTest);
         //mostrar data
+        redirect('registrar/estadisticaResultadoUsu', 'refresh');
     }
     public function estadisticaResultadoUsu(){
         $this->load->view('usuario/estadisticaResultado.php');
