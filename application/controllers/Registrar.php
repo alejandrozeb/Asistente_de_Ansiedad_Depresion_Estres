@@ -234,7 +234,21 @@ class Registrar extends CI_Controller {
             redirect('registrar/ingresaUsuario','refresh');
         }
         $dataTests=$this->Test_model->obtenerTestsUsu($idPer_sesion,$idUsu_sesion);
-        var_dump($dataTests);
+        /* sacamos el ultimo de cada fecha */
+        $i=0;
+        $a=false;
+        $dataResultadoTest=array();
+        while ($a == false) {
+            $dataTestProcess = $dataTests[$i];
+            if($i+1 == count($dataTests)){
+                array_push($dataResultadoTest,$dataTestProcess);
+                $a=true;
+            }elseif($dataTestProcess['t_fecha'] != $dataTests[$i+1]['t_fecha']){
+                array_push($dataResultadoTest,$dataTestProcess);
+            }
+            $i++;    
+        }
+        var_dump($dataResultadoTest);
         //modelo
 
 
