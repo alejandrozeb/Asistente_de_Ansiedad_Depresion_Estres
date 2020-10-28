@@ -235,28 +235,19 @@ class Registrar extends CI_Controller {
         }
         $dataTests=$this->Test_model->obtenerTestsUsu($idPer_sesion,$idUsu_sesion);
         /* sacamos el ultimo de cada fecha */
-        $i=0;
-        $a=false;
-        $dataResultadoTest=array();
-        while ($a == false) {
-            $dataTestProcess = $dataTests[$i];
-            if($i+1 == count($dataTests)){
-                array_push($dataResultadoTest,$dataTestProcess);
-                $a=true;
-            }elseif($dataTestProcess['t_fecha'] != $dataTests[$i+1]['t_fecha']){
-                array_push($dataResultadoTest,$dataTestProcess);
-            }
-            $i++;    
-        }
-        var_dump($dataResultadoTest);
-        //modelo
-
-
-
+       $dataResult= $this->seleccionaUltimaFechaTest($dataTests);
+       var_dump($dataResult);
+       $dataResultTest=array();
+       $i=0;
         //data 
-
+        foreach ($dataResult as $test) {
+            $dataResultTest[$i]['t_fecha'] = $test['t_fecha'];
+            $dataResultTest[$i]['t_ansiedadpuntos'] = $test['t_ansiedadpuntos'];
+            $dataResultTest[$i]['t_estrespuntos'] = $test['t_estrespuntos'];
+            $dataResultTest[$i]['t_depresionpuntos'] = $test['t_depresionpuntos'];
+            $i++;
+        }
         //enviar la data a la vista con session
-
         //mostrar data
     }
     public function estadisticaResultadoUsu(){
@@ -382,6 +373,22 @@ class Registrar extends CI_Controller {
             );
         }
         return $resultado;
+    }
+    public function seleccionaUltimaFechaTest($dataTests){
+        $i=0;
+        $a=false;
+        $dataResultadoTest=array();
+        while ($a == false) {
+            $dataTestProcess = $dataTests[$i];
+            if($i+1 == count($dataTests)){
+                array_push($dataResultadoTest,$dataTestProcess);
+                $a=true;
+            }elseif($dataTestProcess['t_fecha'] != $dataTests[$i+1]['t_fecha']){
+                array_push($dataResultadoTest,$dataTestProcess);
+            }
+            $i++;    
+        }
+        return $dataResultadoTest;
     }
 
     public function logoutUsuario(){
