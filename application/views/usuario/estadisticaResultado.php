@@ -1,5 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+$idPer_sesion = $this->session->userdata('persona');
+$idUsu_sesion = $this->session->userdata('usuario');
+$dataTest = $this->session->userdata('data');
+if($idPer_sesion==null || $idUsu_sesion==null){
+    redirect('registrar/ingresaUsuario','refresh');
+}
+var_dump($dataTest);
 ?>
 <head>
     <meta charset="utf-8">
@@ -24,26 +31,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     function drawChart() {
 
       var data = new google.visualization.DataTable();
-      data.addColumn('number', 'Day');
-      data.addColumn('number', 'Guardians of the Galaxy');
-      data.addColumn('number', 'The Avengers');
-      data.addColumn('number', 'Transformers: Age of Extinction');
+      data.addColumn('date', 'Month');
+      data.addColumn('number', 'Ansiedad');
+      data.addColumn('number', 'Depresion');
+      data.addColumn('number', 'Estres');
 
       data.addRows([
-        [1,  37.8, 80.8, 41.8],
-        [2,  30.9, 69.5, 32.4],
-        [3,  25.4,   57, 25.7],
-        [4,  11.7, 18.8, 10.5],
-        [5,  11.9, 17.6, 10.4],
-        [6,   8.8, 13.6,  7.7],
-        [7,   7.6, 12.3,  9.6],
-        [8,  12.3, 29.2, 10.6],
-        [9,  16.9, 42.9, 14.8],
-        [10, 12.8, 30.9, 11.6],
-        [11,  5.3,  7.9,  4.7],
-        [12,  6.6,  8.4,  5.2],
-        [13,  4.8,  6.3,  3.6],
-        [14,  4.2,  6.2,  3.4]
+        [new Date(2014, 0),  37.8, 80.8, 41.8],
+        [new Date(2014, 1),  30.9, 69.5, 32.4],
+        /* [new Date(2014, 2),  25.4,   57, 25.7],
+        [new Date(2014, 3),  11.7, 18.8, 10.5],
+        [new Date(2014, 4),  11.9, 17.6, 10.4],
+        [new Date(2014, 5),   8.8, 13.6,  7.7],
+        [new Date(2014, 6),   7.6, 12.3,  9.6],
+        [new Date(2014, 7),  12.3, 29.2, 10.6],
+        [new Date(2014, 8),  16.9, 42.9, 14.8],
+        [new Date(2014, 9), 12.8, 30.9, 11.6],
+        [new Date(2014, 10),  5.3,  7.9,  4.7],
+        [new Date(2014, 11),  6.6,  8.4,  5.2],
+        [new Date(2014, 12),  4.8,  6.3,  3.6],
+        [new Date(2015, 0),  4.2,  6.2,  3.4] */
       ]);
 
       var options = {
@@ -53,11 +60,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         },
         width: 900,
         height: 500,
-        axes: {
-          x: {
-            0: {side: 'top'}
-          }
-        }
+        series: {
+          0: {targetAxisIndex: 0}
+        },
+        vAxes: {
+          // Adds titles to each axis.
+          0: {title: 'Temps (Celsius)'}
+        },
+        hAxis: {
+          ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
+                  new Date(2014, 4),  new Date(2014, 5), new Date(2014, 6), new Date(2014, 7),
+                  new Date(2014, 8), new Date(2014, 9), new Date(2014, 10), new Date(2014, 11)
+                 ]
+        },
       };
 
       var chart = new google.charts.Line(document.getElementById('line_top_x'));
