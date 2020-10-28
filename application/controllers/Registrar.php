@@ -227,6 +227,24 @@ class Registrar extends CI_Controller {
 		$this->load->view('usuario/resultadoUsu');
         $this->load->view('usuario/templatesUsu/footer');
     }
+    public function estadisticaResultadoUsuProcess(){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+        $dataTests=$this->Test_model->obtenerTestsUsu($idPer_sesion,$idUsu_sesion);
+        var_dump($dataTests);
+        //modelo
+
+
+
+        //data 
+
+        //enviar la data a la vista con session
+
+        //mostrar data
+    }
     public function estadisticaResultadoUsu(){
         $this->load->view('usuario/estadisticaResultado.php');
         $this->load->view('usuario/templatesUsu/footer');
