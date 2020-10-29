@@ -8,7 +8,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
 }
 //var_dump($dataTest);
 foreach ($dataTest as $test) {
-  echo "[new Date(date.parse(".$test['t_fecha'].")),".$test['t_ansiedadpuntos'].",".$test['t_depresionpuntos'].",".$test['t_estrespuntos']."],";
+  echo "[new Date('".$test['t_fecha']."'),".$test['t_ansiedadpuntos'].",".$test['t_depresionpuntos'].",".$test['t_estrespuntos']."],";
 }  
 ?>
 <head>
@@ -34,37 +34,22 @@ foreach ($dataTest as $test) {
     function drawChart() {
 
       var data = new google.visualization.DataTable();
-      data.addColumn('date', 'Month');
+      data.addColumn('date', 'Pruebas realizadas');
       data.addColumn('number', 'Ansiedad');
       data.addColumn('number', 'Depresion');
       data.addColumn('number', 'Estres');
 
-      data.addRows([
-        /* <?php 
-          foreach ($dataTest as $test) {
-            echo "['".$test['t_fecha']."',".$test['t_ansiedadpuntos'].",".$test['t_depresionpuntos'].",".$test['t_estrespuntos']."],";
-          }
-          ?> */
-        [new Date(2014, 0),  37.8, 80.8, 41.8],
-        [new Date(2014, 1),  30.9, 69.5, 32.4],
-        [new Date(2014, 2),  25.4,   57, 25.7],
-        [new Date(2014, 3),  11.7, 18.8, 10.5],
-        [new Date(2014, 4),  11.9, 17.6, 10.4],
-        [new Date(2014, 5),   8.8, 13.6,  7.7],
-        [new Date(2014, 6),   7.6, 12.3,  9.6],
-        [new Date(2014, 7),  12.3, 29.2, 10.6],
-        [new Date(2014, 8),  16.9, 42.9, 14.8],
-        [new Date(2014, 9), 12.8, 30.9, 11.6],
-        [new Date(2014, 10),  5.3,  7.9,  4.7],
-        [new Date(2014, 11),  6.6,  8.4,  5.2],
-        [new Date(2015, 0),  4.8,  6.3,  3.6],
-        [new Date(2015, 1),  4.2,  6.2,  3.4]
+      data.addRows([<?php 
+        foreach ($dataTest as $test) {
+          echo "[new Date('".$test['t_fecha']."'),".$test['t_ansiedadpuntos'].",".$test['t_depresionpuntos'].",".$test['t_estrespuntos']."],";
+        } 
+      ?>
       ]);
 
       var options = {
         chart: {
-          title: 'Box Office Earnings in First Two Weeks of Opening',
-          subtitle: 'in millions of dollars (USD)'
+          title: 'Asistente de Ansiedad Estres y Depresion',
+          subtitle: 'Resultados de Prueba DASS-21'
         },
         width: 900,
         height: 500,
@@ -73,7 +58,7 @@ foreach ($dataTest as $test) {
         },
         vAxes: {
           // Adds titles to each axis.
-          0: {title: 'Temps (Celsius)'}
+          0: {title: 'Escala Likter'}
         },
         hAxis: {
           ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
