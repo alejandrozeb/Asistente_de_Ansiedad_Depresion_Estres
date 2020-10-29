@@ -255,6 +255,26 @@ class Registrar extends CI_Controller {
         $this->load->view('usuario/estadisticaResultado.php');
         $this->load->view('usuario/templatesUsu/footer');
     }
+    public function ultimaRespuestaUsu(){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+        $dataLastTest=$this->Test_model->obtenerUltimoTestUsu($idPer_sesion,$idUsu_sesion);
+            $ansiedadData=$this->ansiedadUsuProceso($dataLastTest->t_ansiedadpuntos);
+            $depresionData=$this->depresionUsuProceso($dataLastTest->t_depresionpuntos);
+            $estresData=$this->estresUsuProceso($dataLastTest->t_estrespuntos);
+            //desplegar
+            $data=array(
+                'ansiedad' => $ansiedadData,
+                'depresion' => $depresionData,
+                'estres' => $estresData,
+            );
+            $this->session->set_userdata('data', $data);
+            redirect('registrar/resultadoUsuarioAEE', 'refresh');
+
+    }
     //devuelve la ruta completa o la ruta creada con el .
     public function crearDirectorio($idPer_sesion,$idUsu_sesion){
         //devolver ruta
