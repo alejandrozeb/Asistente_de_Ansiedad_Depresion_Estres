@@ -84,6 +84,7 @@ class Doctor extends CI_Controller {
             $p_password =md5($this->input->post('p_password'));
         }
         $data=$this->Persona_model->loginPersona($p_email,$p_password);
+        var_dump($data);
         if($data==null){
             $this->output->set_status_header(500);
             echo "<script>alert('No estas registrado')</script>";
@@ -99,12 +100,12 @@ class Doctor extends CI_Controller {
             exit;
         }else{
             $this->output->set_status_header(200);
-            $doctor = $this->Usuario_model->obtenerDoctor($data['PK_p_id']);
+            $doctor = $this->Doctor_model->obtenerDoctor($data['PK_p_id']);
                     $idPersona=$data['PK_p_id'];
                     $idDoctor=$doctor['Pk_u_id'];
                     $data=array(
                         'persona' => $idPersona,
-                        'usuario' => $idUsuario,
+                        'doctor' => $idDoctor,
                         'nombre' => $doctor['d_nombre'],
                         'apellido' => $doctor['d_apellido'],
                         'is_logged' => TRUE
