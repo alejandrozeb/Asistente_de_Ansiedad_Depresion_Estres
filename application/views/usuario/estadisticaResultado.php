@@ -6,10 +6,9 @@ $dataTest = $this->session->userdata('dataTest');
 if($idPer_sesion==null || $idUsu_sesion==null){
     redirect('registrar/ingresaUsuario','refresh');
 }
-//var_dump($dataTest);
-foreach ($dataTest as $test) {
+/* foreach ($dataTest as $test) {
   echo "[new Date('".$test['t_fecha']."'),".$test['t_ansiedadpuntos'].",".$test['t_depresionpuntos'].",".$test['t_estrespuntos']."],";
-}  
+}  */ 
 ?>
 <head>
     <meta charset="utf-8">
