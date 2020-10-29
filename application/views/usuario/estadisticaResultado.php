@@ -58,14 +58,13 @@ foreach ($dataTest as $test) {
         },
         vAxes: {
           // Adds titles to each axis.
-          0: {title: 'Escala Likter'}
+          0: {title: 'Escala Likter'},
+          minValue: 0,
+          minValue:21
         },
-        hAxis: {
-          ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
-                  new Date(2014, 4),  new Date(2014, 5), new Date(2014, 6), new Date(2014, 7),
-                  new Date(2014, 8), new Date(2014, 9), new Date(2014, 10), new Date(2014, 11)
-                 ]
-        },
+         hAxis: {
+          title: "Dias"
+        }, 
       };
 
       var chart = new google.charts.Line(document.getElementById('line_top_x'));
