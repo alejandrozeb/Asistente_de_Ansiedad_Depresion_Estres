@@ -275,6 +275,14 @@ class Registrar extends CI_Controller {
             redirect('registrar/resultadoUsuarioAEE', 'refresh');
 
     }
+
+    public function verificaDoctor(){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+    }
     //devuelve la ruta completa o la ruta creada con el .
     public function crearDirectorio($idPer_sesion,$idUsu_sesion){
         //devolver ruta
