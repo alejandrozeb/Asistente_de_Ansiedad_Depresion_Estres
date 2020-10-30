@@ -33,6 +33,14 @@ class Doctor_model extends CI_Model{
         else 
             return true;
     }
+    public function obtenerTodosLosDoctores(){
+        $query = $this->db->select('*')
+                ->get('doctor');
+        if(isset($query))
+            return $query->result_array();
+        else
+            return null;
+    }
 }
 
 ?>

@@ -8,6 +8,7 @@ class Registrar extends CI_Controller {
         $this->load->model('Usuario_model');
         $this->load->model('Test_model');
         $this->load->model('DoctorUsuario_model');
+        $this->load->model('Doctor_model');
         $this->load->helper('path');
 
 	} 
@@ -289,11 +290,23 @@ class Registrar extends CI_Controller {
         var_dump($verifica);
         if(empty($verifica)){
             echo 'Mostrar que doctores puede elegir';
+            $dataDoctores=$this->Doctor_model->obtenerTodosLosDoctores();
+            $this->session->set_userdata('dataDoctores', $dataDoctores);
+            //redirect('registrar/resultadoUsuarioAEE', 'refresh');
+            var_dump($dataDoctores);
+
         }else{
             //cargar la pagina del doctor
             echo 'Mostrar la vista, datos de contacto del doctor y la opcion de redactar un email';
         }
     }
+
+    public function eligeDoctor(){
+        $this->load->view('usuario/templatesUsu/header');
+		$this->load->view('usuario/eligeDoctor');
+        $this->load->view('usuario/templatesUsu/footer');
+    }
+
     //devuelve la ruta completa o la ruta creada con el .
     public function crearDirectorio($idPer_sesion,$idUsu_sesion){
         //devolver ruta
