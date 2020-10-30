@@ -307,6 +307,27 @@ class Registrar extends CI_Controller {
         $this->load->view('usuario/templatesUsu/footer');
     }
 
+    public function eligeDoctorProcess($idDoctor){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+        //insertarDocotr
+        $data_detalles=array(
+            'FK_d_id' => $idDoctor,
+            'FK_p_id' => $idPer_sesion,
+            'Fk_u_id' => $idUsu_sesion,
+        );
+        if(!$this->DoctorUsuario_model->insertarDoctorUsuario($data_detalles)){
+            $this->output->set_status_header(500);
+            echo json_encode(array('msg' => 'Error al crear la instancia Doctor_usuario'));
+            exit;
+        }else{
+            //exito
+        }
+    }
+
     //devuelve la ruta completa o la ruta creada con el .
     public function crearDirectorio($idPer_sesion,$idUsu_sesion){
         //devolver ruta
