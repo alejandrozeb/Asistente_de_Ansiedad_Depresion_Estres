@@ -7,6 +7,7 @@ class Registrar extends CI_Controller {
         $this->load->model('Persona_model');
         $this->load->model('Usuario_model');
         $this->load->model('Test_model');
+        $this->load->model('DoctorUsuario_model');
         $this->load->helper('path');
 
 	} 
@@ -281,6 +282,16 @@ class Registrar extends CI_Controller {
         $idUsu_sesion = $this->session->userdata('usuario');
         if($idPer_sesion==null || $idUsu_sesion==null){
             redirect('registrar/ingresaUsuario','refresh');
+        }
+
+        ///verica si tiene doctor
+        $verifica=$this->DoctorUsuario_model->verificaVacio($idPer_sesion,$idUsu_sesion);
+        var_dump($verifica);
+        if(empty($verifica)){
+            echo 'Mostrar que doctores puede elegir';
+        }else{
+            //cargar la pagina del doctor
+            echo 'Mostrar la vista, datos de contacto del doctor y la opcion de redactar un email';
         }
     }
     //devuelve la ruta completa o la ruta creada con el .
