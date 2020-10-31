@@ -277,57 +277,6 @@ class Registrar extends CI_Controller {
             redirect('registrar/resultadoUsuarioAEE', 'refresh');
 
     }
-
-    public function verificaDoctor(){
-        $idPer_sesion = $this->session->userdata('persona');
-        $idUsu_sesion = $this->session->userdata('usuario');
-        if($idPer_sesion==null || $idUsu_sesion==null){
-            redirect('registrar/ingresaUsuario','refresh');
-        }
-
-        ///verica si tiene doctor
-        $verifica=$this->DoctorUsuario_model->verificaVacio($idPer_sesion,$idUsu_sesion);
-        var_dump($verifica);
-        if(empty($verifica)){
-            echo 'Mostrar que doctores puede elegir';
-            $dataDoctores=$this->Doctor_model->obtenerTodosLosDoctores();
-            $this->session->set_userdata('dataDoctores', $dataDoctores);
-            //redirect('registrar/resultadoUsuarioAEE', 'refresh');
-            var_dump($dataDoctores);
-
-        }else{
-            //cargar la pagina del doctor
-            echo 'Mostrar la vista, datos de contacto del doctor y la opcion de redactar un email';
-        }
-    }
-
-    public function eligeDoctor(){
-        $this->load->view('usuario/templatesUsu/header');
-		$this->load->view('usuario/eligeDoctor');
-        $this->load->view('usuario/templatesUsu/footer');
-    }
-
-    public function eligeDoctorProcess($idDoctor){
-        $idPer_sesion = $this->session->userdata('persona');
-        $idUsu_sesion = $this->session->userdata('usuario');
-        if($idPer_sesion==null || $idUsu_sesion==null){
-            redirect('registrar/ingresaUsuario','refresh');
-        }
-        //insertarDocotr
-        $data_detalles=array(
-            'FK_d_id' => $idDoctor,
-            'FK_p_id' => $idPer_sesion,
-            'Fk_u_id' => $idUsu_sesion,
-        );
-        if(!$this->DoctorUsuario_model->insertarDoctorUsuario($data_detalles)){
-            $this->output->set_status_header(500);
-            echo json_encode(array('msg' => 'Error al crear la instancia Doctor_usuario'));
-            exit;
-        }else{
-            //exito
-        }
-    }
-
     //devuelve la ruta completa o la ruta creada con el .
     public function crearDirectorio($idPer_sesion,$idUsu_sesion){
         //devolver ruta
