@@ -65,6 +65,9 @@ class DoctorUsuario extends CI_Controller {
             exit;
         }else{
             //exito
+            $this->output->set_status_header(500);
+            echo json_encode(array('msg' => 'Error al crear la instancia Doctor_usuario'));
+            exit;
         }
     }
     
