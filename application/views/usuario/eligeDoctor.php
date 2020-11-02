@@ -37,7 +37,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                     <p><?php echo $doctor['d_telefono']  ?></p>
                     </div>
                     <div class="card-action">
-                    <a href="<?php echo site_url() ?>DoctorUsuario/eligeDoctorProcess/<?php  echo $doctor['PK_d_id']?>">Elige Doctor</a>
+                    <a href="<?php echo site_url() ?>DoctorUsuario/eligeDoctorProcess/<?php  echo $doctor['PK_d_id'].'/'.$doctor['FK_p_id']?>">Elige Doctor</a>
                     </div>
                 </div>
                 </div>

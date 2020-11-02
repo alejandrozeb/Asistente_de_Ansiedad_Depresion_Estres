@@ -52,7 +52,7 @@ class Doctor extends CI_Controller {
                 'd_nombre' => $d_nombre,
                 'd_apellido' => $d_apellido,
                 'd_telefono' => $d_telefono,
-                'FK_p_id' =>$FK_id_p['PK_p_id']
+                'FK_d_p_id' =>$FK_id_p['PK_p_id']
             );
             if(!$this->Doctor_model->insertarDoctor($doctor_detalles)){
                 $this->output->set_status_header(500);

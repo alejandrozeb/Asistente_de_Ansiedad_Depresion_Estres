@@ -47,7 +47,7 @@ class DoctorUsuario extends CI_Controller {
         $this->load->view('usuario/templatesUsu/footer');
     }
 
-    public function eligeDoctorProcess($idDoctor){
+    public function eligeDoctorProcess($idDoctor,$idPersona){
         $idPer_sesion = $this->session->userdata('persona');
         $idUsu_sesion = $this->session->userdata('usuario');
         if($idPer_sesion==null || $idUsu_sesion==null){
@@ -56,6 +56,7 @@ class DoctorUsuario extends CI_Controller {
         //insertarDocotr
         $data_detalles=array(
             'FK_d_id' => $idDoctor,
+            'FK_p_id' => $idPersona,
             'FK_p_id' => $idPer_sesion,
             'Fk_u_id' => $idUsu_sesion,
         );

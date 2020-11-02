@@ -61,7 +61,7 @@ class Registrar extends CI_Controller {
                 'u_fechanac' => $u_date,
                 'u_telefono' => $u_telefono,
                 'u_sexo' => $u_genero,
-                'FK_p_id' =>$FK_id_p['PK_p_id']
+                'FK_u_p_id' =>$FK_id_p['PK_p_id']
             );
             if(!$this->Usuario_model->insertarUsuario($usuario_detalles)){
                 $this->output->set_status_header(500);
