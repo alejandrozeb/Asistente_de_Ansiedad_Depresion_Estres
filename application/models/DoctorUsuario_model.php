@@ -10,9 +10,9 @@ class DoctorUsuario_model extends CI_Model{
     }
     public function verificaVacio($FK_p_id,$FK_u_id){
         $query = $this->db->select('*')
-                ->where('FK_p_id', $FK_p_id)
-                ->where('FK_u_id', $FK_u_id)
-                ->get('doctor_usuario ');
+                ->where('FK_u_p_id', $FK_p_id)
+                ->where('PK_u_id', $FK_u_id)
+                ->get('doctorusuario ');
         if(isset($query))
             return $query->result_array();
         else
@@ -20,7 +20,7 @@ class DoctorUsuario_model extends CI_Model{
     }
     public function obtenerIdDoctor($FK_p_id){
         $query = $this->db->select('*')
-                ->where('FK_p_id', $FK_p_id)
+                ->where('FK_d_p_id', $FK_p_id)
                 ->get('doctor');
         if(isset($query))
             return $query->row_array();
