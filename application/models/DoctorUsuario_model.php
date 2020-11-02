@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DoctorUsuario_model extends CI_Model{
     public function insertarDoctorUsuario($doctorUsuario_detalles){
-        if(!$this->db->insert("doctor_usuario",$doctorUsuario_detalles))
+        if(!$this->db->insert("doctorusuario",$doctorUsuario_detalles))
              return false;
         else
             return true; 

@@ -55,10 +55,10 @@ class DoctorUsuario extends CI_Controller {
         }
         //insertarDocotr
         $data_detalles=array(
-            'FK_d_id' => $idDoctor,
-            'FK_p_id' => $idPersona,
-            'FK_p_id' => $idPer_sesion,
-            'Fk_u_id' => $idUsu_sesion,
+            'PK_d_id' => $idDoctor,
+            'FK_d_p_id' => $idPersona,
+            'FK_u_p_id' => $idPer_sesion,
+            'Pk_u_id' => $idUsu_sesion,
         );
         if(!$this->DoctorUsuario_model->insertarDoctorUsuario($data_detalles)){
             $this->output->set_status_header(500);
@@ -66,9 +66,7 @@ class DoctorUsuario extends CI_Controller {
             exit;
         }else{
             //exito
-            $this->output->set_status_header(500);
-            echo json_encode(array('msg' => 'Error al crear la instancia Doctor_usuario'));
-            exit;
+            var_dump($data_detalles);
         }
     }
     
