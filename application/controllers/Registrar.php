@@ -199,7 +199,7 @@ class Registrar extends CI_Controller {
             't_ansiedadpuntos' => $ansiedad_result,
             't_depresionpuntos' => $depresion_result,
             't_estrespuntos' => $estres_result,
-            'FK_p_id' =>$idPer_sesion,
+            'FK_u_p_id' =>$idPer_sesion,
             'FK_u_id' =>$idUsu_sesion
         );
         //guardar en bd

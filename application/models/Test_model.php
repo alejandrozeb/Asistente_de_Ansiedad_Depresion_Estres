@@ -10,7 +10,7 @@ class Test_model extends CI_Model{
     }
     public function obtenerTestsUsu($FK_p_id, $FK_u_id){
         $query = $this->db->select('*')
-                ->where('FK_p_id', $FK_p_id)
+                ->where('FK_u_p_id', $FK_p_id)
                 ->where('FK_u_id', $FK_u_id)
                 ->get('test');
         if(isset($query))
@@ -20,7 +20,7 @@ class Test_model extends CI_Model{
     }
     public function obtenerUltimoTestUsu($FK_p_id, $FK_u_id){
         $query = $this->db->select('*')
-                ->where('FK_p_id', $FK_p_id)
+                ->where('FK_u_p_id', $FK_p_id)
                 ->where('FK_u_id', $FK_u_id)
                 ->get('test');
         if(isset($query))
