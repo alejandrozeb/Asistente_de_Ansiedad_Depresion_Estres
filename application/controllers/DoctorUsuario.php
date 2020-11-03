@@ -7,6 +7,7 @@ class DoctorUsuario extends CI_Controller {
         $this->load->model('Persona_model');
         $this->load->model('Doctor_model');
         $this->load->model('DoctorUsuario_model');
+        $this->load->library('email');
 
 	} 
 
@@ -80,14 +81,26 @@ class DoctorUsuario extends CI_Controller {
     public function usuarioEmailProcess(){
         $idPer_sesion = $this->session->userdata('persona');
         $idUsu_sesion = $this->session->userdata('usuario');
+        $dataDoctor = $this->session->userdata('dataDoctor');
         if($idPer_sesion==null || $idUsu_sesion==null){
             redirect('registrar/ingresaUsuario','refresh');
         }
         echo $this->input->post('d_email_usu');
         $u_d_mensaje=$this->input->post('d_email_mensaje');
         $u_d_asunto = $this->input->post('d_email_asunto');
-        echo "asunto   ".$u_d_mensaje.'  mensaje  '.$u_d_asunto;
-            
+        $dataPersona=$this->Persona_model->obtenerPersona($dataDoctor['FK_d_p_id']);
+        $data=array_merge($dataPersona,$dataDoctor);
+        var_dump($data);
+        $this->enviaEmail('alejandrojzeballos','vacio','hi','mi primer mensaje  con php');
+
+
+    }
+    public function enviaEmail($to,$from,$subject,$mensaje){
+        $this->email->to($to);
+        $this->email->from('ale03zeballos@gmail.com');
+        $this->email->subject($subject);
+        $this->email->message($mensaje);
+        $this->email->send();
     }
     public function logoutDoctor(){
 		session_unset();

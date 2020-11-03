@@ -36,6 +36,15 @@ class Persona_model extends CI_Model{
         else
             return null;
     }
+    public function obtenerPersona($id){
+        $query = $this->db->select('*')
+                ->where('PK_p_id', $id)
+                ->get('persona');
+        if(isset($query))
+            return $query->row_array();
+        else
+            return null;
+    }
 }
 
 ?>
