@@ -6,7 +6,7 @@ $dataDoctor = $this->session->userdata('dataDoctor');
 if($idPer_sesion==null || $idUsu_sesion==null){
     redirect('registrar/ingresaUsuario','refresh');
 }
-//var_dump($dataDoctor);
+var_dump($dataDoctor);
 ?>
   <div class="navbar-fixed">
     <nav>
@@ -41,35 +41,33 @@ if($idPer_sesion==null || $idUsu_sesion==null){
               <div class="panel panel-default" style="margin-top: 50px">
                   <div class="panel-heading">Enviar Email</div>
                   <div class="panel-body">
-                      <?php echo form_open(''); //link al url del controlador que recibe los datos?>
+                      <?php echo form_open('doctorUsuario/usuarioEmailProcess'); //link al url del controlador que recibe los datos?>
                       <div class="row">
                         <div class="input-field col s6">
                           <i class="material-icons prefix">account_circle</i>
-                          <input id="icon_prefix" type="text" class="validate">
-                          <label for="icon_prefix">First Name</label>
+                          <input id="icon_prefix" type="text" class="validate" value="<?php echo $dataDoctor['d_nombre'].' '.$dataDoctor['d_apellido']?>">
+                          <label for="icon_prefix">Nombre Completo</label>
                         </div>
                         <div class="input-field col s6">
                           <i class="material-icons prefix">phone</i>
-                          <input id="icon_telephone" type="tel" class="validate">
-                          <label for="icon_telephone">Telephone</label>
+                          <input id="icon_telephone" type="tel" class="validate" value="<?php echo $dataDoctor['d_telefono']; ?>">
+                          <label for="icon_telephone">Telefono</label>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="email" type="email" class="validate">
-                          <label for="email">Email</label>
-                          <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                          <textarea id="asunto" class="materialize-textarea" name="d_email_asunto"></textarea>
+                          <label for="asunto">Asunto</label>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <textarea id="textarea1" class="materialize-textarea"></textarea>
-                          <label for="textarea1">Textarea</label>
+                          <textarea id="mensaje" class="materialize-textarea" name="d_email_mensaje"></textarea>
+                          <label for="mensaje">Mensaje</label>
                         </div>
                       </div>
                       <div class="row">
-                          <input type="submit" name="u_login" value="Enviar" class="btn btn-success btn-sm" required>
-                          <a href="<?php echo site_url('home');?>" class="btn btn-warning btn-sm">otra accion</a>
+                          <input type="submit" name="d_email_usu" value="Enviar" class="btn btn-success btn-sm" required>
                       </div>
                       <?php echo form_close(); ?>
                   </div>

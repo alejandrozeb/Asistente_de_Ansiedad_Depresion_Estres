@@ -77,7 +77,18 @@ class DoctorUsuario extends CI_Controller {
 		$this->load->view('usuario/usuarioEmailDoctor');
         $this->load->view('usuario/templatesUsu/footer');
     }
-    
+    public function usuarioEmailProcess(){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+        echo $this->input->post('d_email_usu');
+        $u_d_mensaje=$this->input->post('d_email_mensaje');
+        $u_d_asunto = $this->input->post('d_email_asunto');
+        echo "asunto   ".$u_d_mensaje.'  mensaje  '.$u_d_asunto;
+            
+    }
     public function logoutDoctor(){
 		session_unset();
 		session_destroy();
