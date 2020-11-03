@@ -29,15 +29,17 @@ class DoctorUsuario extends CI_Controller {
         $verifica=$this->DoctorUsuario_model->verificaVacio($idPer_sesion,$idUsu_sesion);
         var_dump($verifica);
         if(empty($verifica)){
-            echo 'Mostrar que doctores puede elegir';
+            $this->output->set_status_header(200);
             $dataDoctores=$this->Doctor_model->obtenerTodosLosDoctores();
             $this->session->set_userdata('dataDoctores', $dataDoctores);
             redirect('DoctorUsuario/eligeDoctor', 'refresh');
-            var_dump($dataDoctores);
 
         }else{
             //cargar la pagina del doctor
-            echo 'Mostrar la vista, datos de contacto del doctor y la opcion de redactar un email';
+            $this->output->set_status_header(200);
+            $dataDoctor=$this->Doctor_model->obtenerDoctor($verifica[0]['FK_d_p_id']);
+            $this->session->set_userdata('dataDoctor', $dataDoctor);
+            redirect('DoctorUsuario/usuarioEmail', 'refresh');
         }
     }
 
@@ -68,6 +70,12 @@ class DoctorUsuario extends CI_Controller {
             //exito
             var_dump($data_detalles);
         }
+    }
+
+    public function usuarioEmail(){
+        $this->load->view('usuario/templatesUsu/header');
+		$this->load->view('usuario/usuarioEmailDoctor');
+        $this->load->view('usuario/templatesUsu/footer');
     }
     
     public function logoutDoctor(){
