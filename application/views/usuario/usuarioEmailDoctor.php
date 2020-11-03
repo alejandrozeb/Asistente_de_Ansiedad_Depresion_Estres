@@ -6,7 +6,6 @@ $dataDoctor = $this->session->userdata('dataDoctor');
 if($idPer_sesion==null || $idUsu_sesion==null){
     redirect('registrar/ingresaUsuario','refresh');
 }
-var_dump($dataDoctor);
 ?>
   <div class="navbar-fixed">
     <nav>

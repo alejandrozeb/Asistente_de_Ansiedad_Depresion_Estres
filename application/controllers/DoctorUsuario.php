@@ -97,6 +97,9 @@ class DoctorUsuario extends CI_Controller {
             exit;
         }else{
                 //no se pudo
+                echo "<script>alert('no se pudo enviar')</script>";
+                redirect('registrar/ultimaRespuestaUsu', 'refresh');
+                exit;
         }
 
 

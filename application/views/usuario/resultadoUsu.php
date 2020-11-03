@@ -83,19 +83,16 @@ if($idPer_sesion==null || $idUsu_sesion==null){
             </div>
         </div>
         <div class="col s12 m12 l6">
-            <div class="card hoverable">
-                <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="<?php echo base_url('imagenes/saludMental.jpg')?>">
+            <div class="card">
+                <div class="card-image">
+                <img src="<?php echo base_url('imagenes/saludMental.jpg')?>">
+                <span class="card-title">¿Buscas ayuda?</span>
                 </div>
                 <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">¿Buscas ayuda?<i class="material-icons right">more_vert</i></span>
-                <p>Contacta con un profesional aqui</p>
+                <p>Contacta con un profesional</p>
                 </div>
-                <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Contactate<i class="material-icons right">close</i></span>
-                <p>
-                    <h2>Podras contactar con profesionales </h2>
-                </p>
+                <div class="card-action">
+                <a class="blue-text" href="<?php echo site_url();?>doctorUsuario/verificaDoctor">Contacta con un doctor aqui</a>
                 </div>
             </div>
         </div>
