@@ -100,67 +100,56 @@ class DoctorUsuario extends CI_Controller {
                 echo "<script>alert('no se pudo enviar')</script>";
                 redirect('registrar/ultimaRespuestaUsu', 'refresh');
                 exit;
+
+                
         }
 
 
     }
     public function enviaEmail($to,$subject,$mensaje){
-        $this->email->set_newline("\r\n");
-        //Indicamos el protocolo a utilizar
-        $config['protocol'] = 'smtp';
-         
-       //El servidor de correo que utilizaremos
-        $config["smtp_host"] = 'smtp.gmail.com';
-         
-       //Nuestro usuario
-        $config["smtp_user"] = 'asistenteaee@gmail.com';
-         
-       //Nuestra contraseña
-        $config["smtp_pass"] = 'asistente433';   
-         
-       //El puerto que utilizará el servidor smtp
-        $config["smtp_port"] = '25';
+       // Load PHPMailer library
+       $this->load->library('phpmailer_lib');
         
-       //El juego de caracteres a utilizar
-        $config['charset'] = 'utf-8';
- 
-       //Permitimos que se puedan cortar palabras
-        $config['wordwrap'] = TRUE;
-         
-       //El email debe ser valido 
-       $config['validate'] = true;
+       // PHPMailer object
+       $mail = $this->phpmailer_lib->load();
        
-        
-      //Establecemos esta configuración
-        $this->email->initialize($config);
- 
-      //Ponemos la dirección de correo que enviará el email y un nombre
-        $this->email->from('asistenteaee@gmail.com', 'Alejandro Zeballos');
-         
-      /*
-       * Ponemos el o los destinatarios para los que va el email
-       * en este caso al ser un formulario de contacto te lo enviarás a ti
-       * mismo
-       */
-        $this->email->to($to);
-         
-      //Definimos el asunto del mensaje
-        $this->email->subject($subject);
-         
-      //Definimos el mensaje a enviar
-        $this->email->message($mensaje);
-         
-        //Enviamos el email y si se produce bien o mal que avise con una flasdata
-        if($this->email->send()){
-            echo 'Email enviado correctamente';
-            echo $this->email->print_debugger(array('headers'));
-            return false;
-        }else{
-            //pruebas en el host, no puedo definirlo en localhost
-            echo 'No se a enviado el email';
-            echo $this->email->print_debugger(array('headers'));
-            return true;
-        }
+       // SMTP configuration
+       $mail->isSMTP();
+       $mail->Host     = 'smtp.example.com';
+       $mail->SMTPAuth = true;
+       $mail->Username = 'user@example.com';
+       $mail->Password = '********';
+       $mail->SMTPSecure = 'ssl';
+       $mail->Port     = 465;
+       
+       $mail->setFrom('info@example.com', 'CodexWorld');
+       $mail->addReplyTo('info@example.com', 'CodexWorld');
+       
+       // Add a recipient
+       $mail->addAddress('john.doe@gmail.com');
+       
+       // Add cc or bcc 
+       $mail->addCC('cc@example.com');
+       $mail->addBCC('bcc@example.com');
+       
+       // Email subject
+       $mail->Subject = 'Send Email via SMTP using PHPMailer in CodeIgniter';
+       
+       // Set email format to HTML
+       $mail->isHTML(true);
+       
+       // Email body content
+       $mailContent = "<h1>Send HTML Email using SMTP in CodeIgniter</h1>
+           <p>This is a test email sending using SMTP mail server with PHPMailer.</p>";
+       $mail->Body = $mailContent;
+       
+       // Send email
+       if(!$mail->send()){
+           echo 'Message could not be sent.';
+           echo 'Mailer Error: ' . $mail->ErrorInfo;
+       }else{
+           echo 'Message has been sent';
+       }
     }
     public function logoutDoctor(){
 		session_unset();
