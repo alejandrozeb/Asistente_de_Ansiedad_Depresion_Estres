@@ -23,12 +23,26 @@ class contacto extends CI_Controller {
             redirect('registrar/ingresaUsuario','refresh');
         }
         $form=$this->input->post('c_registrar');
-        echo $form;
         $c_nombre=$this->input->post('c_nombre');
         $c_apellido=$this->input->post('c_apellido');
         $c_email=$this->input->post('c_email');
 
-        echo $c_nombre.' '.$c_apellido.' '.$c_email;
+        $data_contacto= array(
+            'c_nombre' => $c_nombre,
+            'c_apellido' => $c_apellido,
+            'c_email' => $c_email,
+            'Fk_u_id' => $idUsu_sesion,
+            'FK_u_p_id' => $idPer_sesion
+        );
+        
+        if(!$this->Contacto_model->insertarContacto($data_contacto)){
+            $this->output->set_status_header(500);
+                echo json_encode(array('msg' => 'Error al crear usuario'));
+                exit;
+        }
+            $this->output->set_status_header(200);
+            //redireccionar
+            redirect('registrar/ultimaRespuestaUsu', 'refresh');         
     }
 
     public function logoutContacto(){
