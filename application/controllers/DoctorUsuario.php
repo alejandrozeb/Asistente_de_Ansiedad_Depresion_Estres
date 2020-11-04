@@ -5,6 +5,7 @@ class DoctorUsuario extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
         $this->load->model('Persona_model');
+        $this->load->model('Usuario_model');
         $this->load->model('Doctor_model');
         $this->load->model('DoctorUsuario_model');
         $this->load->library('email');
@@ -85,70 +86,75 @@ class DoctorUsuario extends CI_Controller {
         if($idPer_sesion==null || $idUsu_sesion==null){
             redirect('registrar/ingresaUsuario','refresh');
         }
-        echo $this->input->post('d_email_usu');
         $u_d_mensaje=$this->input->post('d_email_mensaje');
         $u_d_asunto = $this->input->post('d_email_asunto');
         $dataPersona=$this->Persona_model->obtenerPersona($dataDoctor['FK_d_p_id']);
-        $data=array_merge($dataPersona,$dataDoctor);
-        var_dump($data);
-        if($this->enviaEmail($data['p_email'],$u_d_asunto,$u_d_mensaje)){
-            echo "<script>alert('correo Enviado')</script>";
-            redirect('registrar/ultimaRespuestaUsu', 'refresh');
+        $dataD=array_merge($dataPersona,$dataDoctor);
+
+        $dataPersonaUsu=$this->Persona_model->obtenerPersona($idPer_sesion);
+        $dataUsu=$this->Usuario_model->obtenerUsuario($idPer_sesion);
+        $dataU=array_merge($dataPersonaUsu,$dataUsu);
+        if($this->enviaEmail($dataD,$dataU,$u_d_asunto,$u_d_mensaje)){
+           echo "<script>alert('correo Enviado')</script>";
+           redirect('registrar/ultimaRespuestaUsu', 'refresh');
             exit;
         }else{
                 //no se pudo
-                echo "<script>alert('no se pudo enviar')</script>";
-                redirect('registrar/ultimaRespuestaUsu', 'refresh');
-                exit;
-
-                
+                echo "<script>alert('no se pudo enviar, vuelve a escribir tu mensaje')</script>";
+               redirect('DoctorUsuario/usuarioEmail', 'refresh');
+                exit;    
         }
-
-
     }
-    public function enviaEmail($to,$subject,$mensaje){
+    public function enviaEmail($dataD,$dataU,$u_d_asunto,$u_d_mensaje){
        // Load PHPMailer library
-       $this->load->library('phpmailer_lib');
+       $this->load->library('PHpmailer_lib');
         
        // PHPMailer object
        $mail = $this->phpmailer_lib->load();
        
        // SMTP configuration
        $mail->isSMTP();
-       $mail->Host     = 'smtp.example.com';
+       $mail->Host     = 'smtp.gmail.com';
        $mail->SMTPAuth = true;
-       $mail->Username = 'user@example.com';
-       $mail->Password = '********';
-       $mail->SMTPSecure = 'ssl';
-       $mail->Port     = 465;
+       $mail->Username = 'asistenteaee@gmail.com';
+       $mail->Password = 'asistente433';
+       $mail->SMTPSecure = 'tls';
+       $mail->Port     = 587;
        
-       $mail->setFrom('info@example.com', 'CodexWorld');
-       $mail->addReplyTo('info@example.com', 'CodexWorld');
+       $mail->setFrom('asistenteaee@gmail.com', $dataU['u_nombre'].' '.$dataU['u_apellido']);
+       //$mail->addReplyTo('info@example.com', 'CodexWorld');
        
        // Add a recipient
-       $mail->addAddress('john.doe@gmail.com');
+       $mail->addAddress('ale03zeballos@gmail.com');    //$dataD['p_email']
        
        // Add cc or bcc 
-       $mail->addCC('cc@example.com');
-       $mail->addBCC('bcc@example.com');
+//       $mail->addCC('cc@example.com');
+  //     $mail->addBCC('bcc@example.com');
        
        // Email subject
-       $mail->Subject = 'Send Email via SMTP using PHPMailer in CodeIgniter';
+       $mail->Subject = $u_d_asunto;
        
        // Set email format to HTML
        $mail->isHTML(true);
        
        // Email body content
-       $mailContent = "<h1>Send HTML Email using SMTP in CodeIgniter</h1>
-           <p>This is a test email sending using SMTP mail server with PHPMailer.</p>";
+       $mailContent = "<h1>AsistenteAEE</h1>
+           <p> $u_d_mensaje </p>
+           <p> Numero de cel: ".$dataU['u_telefono']." <br>
+               Genero:  ".$dataU['u_sexo']." <br>
+               Email de paciente:  ".$dataU['p_email']." <br>
+               El Usuario solicito ayuda
+           </p>";
        $mail->Body = $mailContent;
        
        // Send email
        if(!$mail->send()){
            echo 'Message could not be sent.';
            echo 'Mailer Error: ' . $mail->ErrorInfo;
+           return false;
        }else{
            echo 'Message has been sent';
+           return true;
        }
     }
     public function logoutDoctor(){
