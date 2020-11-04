@@ -12,10 +12,10 @@ if($idPer_sesion==null || $idUsu_sesion==null){
         <div class="nav-wrapper">
         <a href="#" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Registrar un Contacto</a></li>
             <li><a href="<?php echo site_url();?>registrar/estadisticaResultadoUsuProcess">Resultados por dia</a></li>
             <li><a href="<?php echo site_url();?>registrar/preguntasUsuario">Cuestionario</a></li>
             <li><a href="#">Ingresar</a></li>
-            <li><a href="badges.html">Registrate</a></li>
             <li><a href="<?php echo site_url();?>registrar/logoutUsuario">LogOut</a></li>
         </ul>
         </div>
@@ -95,6 +95,11 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                 <a class="blue-text" href="<?php echo site_url();?>doctorUsuario/verificaDoctor">Contacta con un doctor aqui</a>
                 </div>
             </div>
+        </div>
+        <div class="fixed-action-btn">
+            <a href="#" class="btn-floating btn-large red" >
+                <i class="large material-icons">mode_edit</i>
+            </a>
         </div>
     </div>
 </div>
