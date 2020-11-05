@@ -84,7 +84,6 @@ class Doctor extends CI_Controller {
             $p_password =md5($this->input->post('p_password'));
         }
         $data=$this->Persona_model->loginPersona($p_email,$p_password);
-        var_dump($data);
         if($data==null){
             $this->output->set_status_header(500);
             echo "<script>alert('No estas registrado')</script>";
@@ -102,7 +101,7 @@ class Doctor extends CI_Controller {
             $this->output->set_status_header(200);
             $doctor = $this->Doctor_model->obtenerDoctor($data['PK_p_id']);
                     $idPersona=$data['PK_p_id'];
-                    $idDoctor=$doctor['Pk_u_id'];
+                    $idDoctor=$doctor['PK_d_id'];
                     $data=array(
                         'persona' => $idPersona,
                         'doctor' => $idDoctor,
@@ -110,7 +109,9 @@ class Doctor extends CI_Controller {
                         'apellido' => $doctor['d_apellido'],
                         'is_logged' => TRUE
                     );
-                    $this->session->set_userdata($data);
+            $this->session->set_userdata($data);
+            //data de todo para mostrar a sus pacientes
+            $this->pacientesDocProcess($idDoctor,$idPersona);
 			//redireccionar
 			redirect('Doctor/resultadosDoctor', 'refresh');
         }
@@ -118,9 +119,19 @@ class Doctor extends CI_Controller {
 	
 	public function resultadosDoctor(){
 		$this->load->view('templates/header');
-		$this->load->view('templates/nav');
 		$this->load->view('doctor/resultadosDoc');
 		$this->load->view('templates/footer');
+    }
+
+    public function pacientesDocProcess($idDoc,$idPer){
+        //idennntificar los paciente
+
+        //buscar su informacion
+
+        //llevar a la session
+
+        //volver al controlador principal
+        
     }
     
     public function logoutDoctor(){
