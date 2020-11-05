@@ -104,6 +104,81 @@ class contacto extends CI_Controller {
 
     }
 
+    public function enviaEmailContacto(){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+        $dataContacto=$this->Contacto_model->obtenerContacto($idPer_sesion);
+
+        $dataPersonaUsu=$this->Persona_model->obtenerPersona($idPer_sesion);
+        $dataUsu=$this->Usuario_model->obtenerUsuario($idPer_sesion);
+        $dataU=array_merge($dataPersonaUsu,$dataUsu);
+        if($this->enviaEmail($dataContacto,$dataU)){
+           echo "<script>alert('correo Enviado')</script>";
+           redirect('registrar/ultimaRespuestaUsu', 'refresh');
+            exit;
+        }else{
+                //no se pudo
+                echo "<script>alert('no se pudo enviar, vuelve a escribir tu mensaje')</script>";
+              redirect('DoctorUsuario/usuarioEmail', 'refresh');
+                exit;    
+        }
+    }
+
+    public function enviaEmail($dataContacto,$dataU){
+        // Load PHPMailer library
+        $this->load->library('PHpmailer_lib');
+         
+        // PHPMailer object
+        $mail = $this->phpmailer_lib->load();
+        
+        // SMTP configuration
+        $mail->isSMTP();
+        $mail->Host     = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'asistenteaee@gmail.com';
+        $mail->Password = 'asistente433';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port     = 587;
+        
+        $mail->setFrom('asistenteaee@gmail.com', $dataContacto['c_nombre'].' '.$dataContacto['c_apellido']);
+        //$mail->addReplyTo('info@example.com', 'CodexWorld');
+        
+        // Add a recipient
+        $mail->addAddress($dataContacto['c_email']);    //$dataD['p_email']
+        
+        // Add cc or bcc 
+ //       $mail->addCC('cc@example.com');
+   //     $mail->addBCC('bcc@example.com');
+        
+        // Email subject
+        $mail->Subject = 'Tu amig@ necesita ayuda';
+        
+        // Set email format to HTML
+        $mail->isHTML(true);
+        
+        // Email body content
+        $mailContent = "<h1>AsistenteAEE</h1>
+            <p> Numero de cel: ".$dataU['u_telefono']." <br>
+                Genero:  ".$dataU['u_sexo']." <br>
+                Email de paciente:  ".$dataU['p_email']." <br>
+                El Usuario solicito ayuda, el te eligio como su contacto de emergencia, por favor comunicate  que necesita mucho hablar respecto a su salud mental (niveles de Depresion, Ansiedad y Estres muy altos). 
+            </p>";
+        $mail->Body = $mailContent;
+        
+        // Send email
+        if(!$mail->send()){
+            //echo 'Message could not be sent.';
+            //echo 'Mailer Error: ' . $mail->ErrorInfo;
+            return false;
+        }else{
+            //echo 'Message has been sent';
+            return true;
+        }
+     }
+
     public function logoutContacto(){
 		session_unset();
 		session_destroy();

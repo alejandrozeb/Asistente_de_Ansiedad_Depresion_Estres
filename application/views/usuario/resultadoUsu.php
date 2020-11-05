@@ -97,7 +97,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
             </div>
         </div>
         <div class="fixed-action-btn">
-            <a href="#" class="btn-floating btn-large red" >
+            <a href="<?php echo site_url();?>contacto/enviaEmailContacto" class="btn-floating btn-large red" >
                 <i class="large material-icons">mode_edit</i>
             </a>
         </div>
