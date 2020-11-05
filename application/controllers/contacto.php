@@ -64,8 +64,15 @@ class contacto extends CI_Controller {
             $this->output->set_status_header(200);
             //mostrar el contacto con la opcion de cambiarlo
             $this->session->set_userdata('dataContacto', $dataContacto);
-            //redirect('DoctorUsuario/usuarioEmail', 'refresh');
+            redirect('contacto/mostrarContacto', 'refresh');
         }
+    }
+
+    public function mostrarContacto()
+	{
+		$this->load->view('templates/header');
+		$this->load->view('usuario/mostrarContacto');
+		$this->load->view('templates/footer');
     }
 
     public function logoutContacto(){
