@@ -60,7 +60,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                           <input type="email" name="c_email" class="form-control input-sm" placeholder="Email de contacto" value="<?php echo $dataContacto->c_email;?>" required>
                       </div>
                       <div class="form-group">
-                          <input type="submit" name="c_actualizar" value="Actualizar Contacto" class="btn btn-success btn-sm" required>
+                          <input type="submit" name="c_actualizarContacto" value="Actualizar Contacto" class="btn btn-success btn-sm" required>
                       </div>
                       <?php echo form_close(); ?>
                   </div>

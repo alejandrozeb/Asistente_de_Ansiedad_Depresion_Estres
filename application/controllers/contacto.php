@@ -75,6 +75,27 @@ class contacto extends CI_Controller {
 		$this->load->view('templates/footer');
     }
 
+    public function actualizarContacto(){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+        $form=$this->input->post('c_actualizarContacto');
+        $c_nombre=$this->input->post('c_nombre');
+        $c_apellido=$this->input->post('c_apellido');
+        $c_email=$this->input->post('c_email');
+        $data_contacto= array(
+            'c_nombre' => $c_nombre,
+            'c_apellido' => $c_apellido,
+            'c_email' => $c_email,
+            'Fk_u_id' => $idUsu_sesion,
+            'FK_u_p_id' => $idPer_sesion
+        );
+        var_dump($data_contacto);
+
+    }
+
     public function logoutContacto(){
 		session_unset();
 		session_destroy();
