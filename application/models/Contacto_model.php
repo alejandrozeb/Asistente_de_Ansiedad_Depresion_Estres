@@ -28,5 +28,16 @@ class Contacto_model extends CI_Model{
         else
             return null;
     }
+
+    public function verificaVacioContacto($FK_u_p_id,$FK_u_id){
+        $query = $this->db->select('*')
+                ->where('FK_u_p_id', $FK_u_p_id)
+                ->where('Fk_u_id', $FK_u_id)
+                ->get('contacto');
+        if(isset($query))
+            return $query->last_row();
+        else
+            return null;
+    }
 }
 ?>

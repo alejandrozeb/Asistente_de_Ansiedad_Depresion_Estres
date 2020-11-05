@@ -44,6 +44,29 @@ class contacto extends CI_Controller {
             //redireccionar
             redirect('registrar/ultimaRespuestaUsu', 'refresh');         
     }
+    
+    public function verificaContacto(){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idUsu_sesion = $this->session->userdata('usuario');
+        if($idPer_sesion==null || $idUsu_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+
+        ///verica si tiene Contacto
+        $dataContacto=$this->Contacto_model->verificaVacioContacto($idPer_sesion,$idUsu_sesion);
+        if(empty($dataContacto)){
+            //ingresa contacto
+            $this->output->set_status_header(200);
+            redirect('contacto', 'refresh');
+
+        }else{
+            //cargar la pagina del doctor
+            $this->output->set_status_header(200);
+            //mostrar el contacto con la opcion de cambiarlo
+            $this->session->set_userdata('dataContacto', $dataContacto);
+            //redirect('DoctorUsuario/usuarioEmail', 'refresh');
+        }
+    }
 
     public function logoutContacto(){
 		session_unset();
