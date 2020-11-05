@@ -39,5 +39,15 @@ class Contacto_model extends CI_Model{
         else
             return null;
     }
+
+    public function updateContacto($FK_u_p_id,$FK_u_id,$dataContacto){
+        $query = $this->db->where('FK_u_p_id', $FK_u_p_id)
+                ->where('Fk_u_id', $FK_u_id)
+                ->update('contacto', $dataContacto);
+        if(isset($query))
+            return true;
+        else
+            return null;
+    }
 }
 ?>

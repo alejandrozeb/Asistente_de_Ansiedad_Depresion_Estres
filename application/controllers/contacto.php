@@ -92,7 +92,15 @@ class contacto extends CI_Controller {
             'Fk_u_id' => $idUsu_sesion,
             'FK_u_p_id' => $idPer_sesion
         );
-        var_dump($data_contacto);
+        if(!$this->Contacto_model->updateContacto($idPer_sesion,$idUsu_sesion,$data_contacto)){
+            $this->output->set_status_header(500);
+                echo json_encode(array('msg' => 'Error al actualizar el update'));
+                exit;
+        }
+            $this->output->set_status_header(200);
+            //redireccionar
+            echo "<script>alert('Contacto Actualizado')</script>";
+            redirect('registrar/ultimaRespuestaUsu', 'refresh');        
 
     }
 
