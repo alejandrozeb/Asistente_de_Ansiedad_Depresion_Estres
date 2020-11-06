@@ -152,9 +152,6 @@ class Doctor extends CI_Controller {
         if($idPer_sesion==null || $idDoc_sesion==null){
             redirect('registrar/ingresaUsuario','refresh');
         }
-
-        echo $idPer_sesion.' '.$idDoc_sesion.' '.$dataPer.' '.$dataUsu;
-
         //sacar id persona y usuario
 
 
@@ -165,6 +162,7 @@ class Doctor extends CI_Controller {
        $i=0;
         //data 
         foreach ($dataResult as $test) {
+            $dataResultTest[$i]['t_id'] = $test['PK_t_id'];
             $dataResultTest[$i]['t_fecha'] = $test['t_fecha'];
             $dataResultTest[$i]['t_ansiedadpuntos'] = $test['t_ansiedadpuntos'];
             $dataResultTest[$i]['t_estrespuntos'] = $test['t_estrespuntos'];
@@ -174,7 +172,13 @@ class Doctor extends CI_Controller {
         //enviar la data a la vista con session
         $this->session->set_userdata('dataTest', $dataResultTest);
         //mostrar data
-        //redirect('registrar/estadisticaResultadoUsu', 'refresh');
+        redirect('doctor/estadisticaResultadoDoctorAEE', 'refresh');
+    }
+
+    public function estadisticaResultadoDoctorAEE(){
+        $this->load->view('doctor/templatesDoc/header');
+		$this->load->view('doctor/resultadoEstadisticaDoctor');
+        $this->load->view('doctor/templatesDoc/footer');
     }
 
     public function seleccionaUltimaFechaTest($dataTests){
@@ -194,7 +198,7 @@ class Doctor extends CI_Controller {
         return $dataResultadoTest;
     }
 
-    
+
     
     public function logoutDoctor(){
 		session_unset();

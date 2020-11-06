@@ -1,14 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $idPer_sesion = $this->session->userdata('persona');
-$idUsu_sesion = $this->session->userdata('usuario');
+$idDoc_sesion = $this->session->userdata('doctor');
 $dataTest = $this->session->userdata('dataTest');
-if($idPer_sesion==null || $idUsu_sesion==null){
-    redirect('registrar/ingresaUsuario','refresh');
+if($idPer_sesion==null || $idDoc_sesion==null){
+    redirect('doctorr/ingresaDoctor','refresh');
 }
-/* foreach ($dataTest as $test) {
-  echo "[new Date('".$test['t_fecha']."'),".$test['t_ansiedadpuntos'].",".$test['t_depresionpuntos'].",".$test['t_estrespuntos']."],";
-}  */ 
 ?>
 <head>
     <meta charset="utf-8">
@@ -78,7 +75,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
             <div class="nav-wrapper">
             <a href="#" class="brand-logo">Logo</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="<?php echo site_url();?>registrar/resultadoUsuarioAEE">Ultimo resultado</a></li>
+                <li><a href="<?php echo site_url();?>doctor/resultadosDoctor">Pagina Principal</a></li>
                 <li><a href="#">Doctor</a></li>
                 <li><a href="badges.html">Registrate</a></li>
                 <li><a href="<?php echo site_url();?>registrar/logoutUsuario">LogOut</a></li>
