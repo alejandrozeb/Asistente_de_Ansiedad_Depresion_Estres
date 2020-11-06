@@ -5,7 +5,9 @@ class Doctor extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
         $this->load->model('Persona_model');
+        $this->load->model('Usuario_model');
         $this->load->model('Doctor_model');
+        $this->load->model('DoctorUsuario_model');
 
 	} 
 
@@ -111,9 +113,11 @@ class Doctor extends CI_Controller {
                     );
             $this->session->set_userdata($data);
             //data de todo para mostrar a sus pacientes
-            $this->pacientesDocProcess($idDoctor,$idPersona);
-			//redireccionar
-			redirect('Doctor/resultadosDoctor', 'refresh');
+            if($this->pacientesDocProcess($idDoctor,$idPersona)){
+                //redireccionar
+			    redirect('Doctor/resultadosDoctor', 'refresh');     
+            }
+
         }
     }
 	
@@ -125,13 +129,20 @@ class Doctor extends CI_Controller {
 
     public function pacientesDocProcess($idDoc,$idPer){
         //idennntificar los paciente
-
-        //buscar su informacion
-
+            $dataPaciente=$this->DoctorUsuario_model->obtenerPacientes($idPer,$idDoc);
+            var_dump($dataPaciente);
+            $dataArrayPac=array();
+            foreach ($dataPaciente as $Paciente) {
+                $dataPer=$this->Persona_model->obtenerPersona($Paciente['FK_u_p_id']);                
+                $dataUsuario=$this->Usuario_model->obtenerUsuario($Paciente['FK_u_p_id']);
+                $dataPacTotal=array_merge($dataPer,$dataUsuario);
+                array_push($dataArrayPac,$dataPacTotal);
+            }
+            var_dump($dataArrayPac);
         //llevar a la session
-
+        $this->session->set_userdata('dataPacientes',$dataArrayPac);
         //volver al controlador principal
-        
+        return true;
     }
     
     public function logoutDoctor(){

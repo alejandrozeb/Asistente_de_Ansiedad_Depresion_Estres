@@ -27,6 +27,17 @@ class DoctorUsuario_model extends CI_Model{
         else
             return null;
     }
+
+    public Function ObtenerPacientes($idPer,$idDoc){
+        $query = $this->db->select('*')
+                ->where('FK_d_p_id', $idPer)
+                ->where('PK_d_id', $idDoc)
+                ->get('doctorusuario');
+        if(isset($query))
+            return $query->result_array();
+        else
+            return null;
+    }
     
 }
 

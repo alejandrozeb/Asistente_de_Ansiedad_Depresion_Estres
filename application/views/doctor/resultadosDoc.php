@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $idPer_sesion = $this->session->userdata('persona');
 $idDoc_sesion = $this->session->userdata('doctor');
+$dataPacientes = $this->session->userdata('dataPacientes');
 if($idPer_sesion==null || $idDoc_sesion==null){
     redirect('doctor/ingresaDoctor','refresh');
 }
