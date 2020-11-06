@@ -7,6 +7,7 @@ class Doctor extends CI_Controller {
         $this->load->model('Persona_model');
         $this->load->model('Usuario_model');
         $this->load->model('Doctor_model');
+        $this->load->model('Test_model');
         $this->load->model('DoctorUsuario_model');
 
 	} 
@@ -144,6 +145,56 @@ class Doctor extends CI_Controller {
         //volver al controlador principal
         return true;
     }
+
+    public function estadisticaResultadoUsuProcess($dataPer,$dataUsu){
+        $idPer_sesion = $this->session->userdata('persona');
+        $idDoc_sesion = $this->session->userdata('doctor');
+        if($idPer_sesion==null || $idDoc_sesion==null){
+            redirect('registrar/ingresaUsuario','refresh');
+        }
+
+        echo $idPer_sesion.' '.$idDoc_sesion.' '.$dataPer.' '.$dataUsu;
+
+        //sacar id persona y usuario
+
+
+        $dataTests=$this->Test_model->obtenerTestsUsu($dataPer,$dataUsu);
+        /* sacamos el ultimo de cada fecha */
+       $dataResult= $this->seleccionaUltimaFechaTest($dataTests);
+       $dataResultTest=array();
+       $i=0;
+        //data 
+        foreach ($dataResult as $test) {
+            $dataResultTest[$i]['t_fecha'] = $test['t_fecha'];
+            $dataResultTest[$i]['t_ansiedadpuntos'] = $test['t_ansiedadpuntos'];
+            $dataResultTest[$i]['t_estrespuntos'] = $test['t_estrespuntos'];
+            $dataResultTest[$i]['t_depresionpuntos'] = $test['t_depresionpuntos'];
+            $i++;
+        }
+        //enviar la data a la vista con session
+        $this->session->set_userdata('dataTest', $dataResultTest);
+        //mostrar data
+        //redirect('registrar/estadisticaResultadoUsu', 'refresh');
+    }
+
+    public function seleccionaUltimaFechaTest($dataTests){
+        $i=0;
+        $a=false;
+        $dataResultadoTest=array();
+        while ($a == false) {
+            $dataTestProcess = $dataTests[$i];
+            if($i+1 == count($dataTests)){
+                array_push($dataResultadoTest,$dataTestProcess);
+                $a=true;
+            }elseif($dataTestProcess['t_fecha'] != $dataTests[$i+1]['t_fecha']){
+                array_push($dataResultadoTest,$dataTestProcess);
+            }
+            $i++;    
+        }
+        return $dataResultadoTest;
+    }
+
+    
     
     public function logoutDoctor(){
 		session_unset();

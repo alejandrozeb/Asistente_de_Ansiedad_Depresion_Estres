@@ -23,7 +23,9 @@ if($idPer_sesion==null || $idDoc_sesion==null){
     <div class="row">
         <div class="col-12"><h1>Mostrar sus pacientes</h1></div>
         <?php
+            if($dataPacientes!=null){
             foreach ($dataPacientes as $Paciente) {
+                var_dump($Paciente);
         ?>
             <div class="row">
                 <div class="col s12 m6">
@@ -36,11 +38,15 @@ if($idPer_sesion==null || $idDoc_sesion==null){
                     <p><?php echo $Paciente['u_sexo']; ?></p>
                     </div>
                     <div class="card-action">
-                    <a href="#">Resultados pruebas</a>
+                    <a href="<?php echo site_url() ?>Doctor/estadisticaResultadoUsuProcess/<?php  echo $Paciente['PK_p_id'].'/'.$Paciente['Pk_u_id']?> ">Resultados pruebas</a>
                     </div>
                 </div>
                 </div>
             </div>                   
+        <?php
+            }}else{
+        ?>
+            <h2>No tienes Pacientes</h2>
         <?php
             }
         ?>     
