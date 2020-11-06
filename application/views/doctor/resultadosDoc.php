@@ -22,5 +22,27 @@ if($idPer_sesion==null || $idDoc_sesion==null){
 <div class="container">
     <div class="row">
         <div class="col-12"><h1>Mostrar sus pacientes</h1></div>
+        <?php
+            foreach ($dataPacientes as $Paciente) {
+        ?>
+            <div class="row">
+                <div class="col s12 m6">
+                <div class="card ">
+                    <div class="card-content black-text">
+                    <span class="card-title"> Paciente: <?php echo $Paciente['u_nombre'].' '.$Paciente['u_apellido'];?></span>
+                    <p><?php echo $Paciente['p_email'];  ?></p>
+                    <p><?php echo $Paciente['u_telefono']; ?></p>
+                    <p><?php echo $Paciente['u_fechanac']; ?></p>
+                    <p><?php echo $Paciente['u_sexo']; ?></p>
+                    </div>
+                    <div class="card-action">
+                    <a href="#">Resultados pruebas</a>
+                    </div>
+                </div>
+                </div>
+            </div>                   
+        <?php
+            }
+        ?>     
     </div>
 </div>
