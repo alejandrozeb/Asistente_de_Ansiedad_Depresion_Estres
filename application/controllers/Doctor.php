@@ -152,23 +152,25 @@ class Doctor extends CI_Controller {
         if($idPer_sesion==null || $idDoc_sesion==null){
             redirect('registrar/ingresaUsuario','refresh');
         }
-        //sacar id persona y usuario
-
-
         $dataTests=$this->Test_model->obtenerTestsUsu($dataPer,$dataUsu);
-        /* sacamos el ultimo de cada fecha */
        $dataResult= $this->seleccionaUltimaFechaTest($dataTests);
+       //continua
        $dataResultTest=array();
        $i=0;
         //data 
         foreach ($dataResult as $test) {
             $dataResultTest[$i]['t_id'] = $test['PK_t_id'];
+            $data = @file_get_contents($test['t_respuestas']);
+            $items = json_decode($data, true);            
+            $dataResultTest[$i]['t_respuestas'] = $items;
             $dataResultTest[$i]['t_fecha'] = $test['t_fecha'];
             $dataResultTest[$i]['t_ansiedadpuntos'] = $test['t_ansiedadpuntos'];
             $dataResultTest[$i]['t_estrespuntos'] = $test['t_estrespuntos'];
             $dataResultTest[$i]['t_depresionpuntos'] = $test['t_depresionpuntos'];
             $i++;
         }
+
+        //echo  base_url(); //produccion
         //enviar la data a la vista con session
         $this->session->set_userdata('dataTest', $dataResultTest);
         //mostrar data
