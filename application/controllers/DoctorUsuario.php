@@ -70,7 +70,9 @@ class DoctorUsuario extends CI_Controller {
             exit;
         }else{
             //exito
-            var_dump($data_detalles);
+            $dataDoctor=$this->Doctor_model->obtenerDoctor($idPersona);
+            $this->session->set_userdata('dataDoctor', $dataDoctor);
+            redirect('DoctorUsuario/usuarioEmail','refresh');
         }
     }
 
