@@ -12,10 +12,9 @@ if($idPer_sesion==null || $idUsu_sesion==null){
         <div class="nav-wrapper">
         <a href="#" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="<?php echo site_url();?>registrar/resultadoUsuarioAEE">Ultimo resultado</a></li>
             <li><a href="<?php echo site_url();?>registrar/estadisticaResultadoUsuProcess">Resultados por dia</a></li>
             <li><a href="<?php echo site_url();?>registrar/preguntasUsuario">Cuestionario</a></li>
-            <li><a href="#">Ingresar</a></li>
-            <li><a href="badges.html">Registrate</a></li>
             <li><a href="<?php echo site_url();?>registrar/logoutUsuario">LogOut</a></li>
         </ul>
         </div>
@@ -36,6 +35,10 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                   </div>
                 </div>         
           </div> 
+          <div class="col s12">
+                <h1 class="center-align">Asistente AEE</h1>
+                <p class="flow-text">Envía un email a tu consejero. </p>
+            </div>
           <div class="col s12">
               <div class="panel panel-default" style="margin-top: 50px">
                   <div class="panel-heading">Enviar Email</div>

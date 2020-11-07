@@ -10,12 +10,11 @@ if($idPer_sesion==null || $idUsu_sesion==null){
   <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
+        <a href="#" class="brand-logo">AsistenteAEE</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="<?php echo site_url();?>contacto/verificaContacto">Registrar un Contacto</a></li>
             <li><a href="<?php echo site_url();?>registrar/estadisticaResultadoUsuProcess">Resultados por dia</a></li>
             <li><a href="<?php echo site_url();?>registrar/preguntasUsuario">Cuestionario</a></li>
-            <li><a href="#">Ingresar</a></li>
             <li><a href="<?php echo site_url();?>registrar/logoutUsuario">LogOut</a></li>
         </ul>
         </div>

@@ -13,10 +13,9 @@ if($idPer_sesion==null || $idUsu_sesion==null){
         <div class="nav-wrapper">
         <a href="#" class="brand-logo">Asistente AEE</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Registrar un Contacto</a></li>
+            <li><a href="<?php echo site_url();?>registrar/resultadoUsuarioAEE">Ultimo resultado</a></li>
             <li><a href="<?php echo site_url();?>registrar/estadisticaResultadoUsuProcess">Resultados por dia</a></li>
             <li><a href="<?php echo site_url();?>registrar/preguntasUsuario">Cuestionario</a></li>
-            <li><a href="#">Ingresar</a></li>
             <li><a href="<?php echo site_url();?>contacto/logoutContacto">LogOut</a></li>
         </ul>
         </div>
@@ -68,7 +67,6 @@ if($idPer_sesion==null || $idUsu_sesion==null){
           </div> 
       </div>
       <div>
-          <h1>consejo</h1>
       </div>
     </div>
 
