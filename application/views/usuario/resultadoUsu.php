@@ -23,6 +23,10 @@ if($idPer_sesion==null || $idUsu_sesion==null){
   </div>
 <div class="container">
     <div class="row">
+            <div class="col s12">
+                <h1 class="center-align">Asistente AEE</h1>
+                <p class="flow-text">Los resultados de la prueba son solo orientativos y no reemplaza al tratamiento con un profesional en salud. </p>
+            </div>
         <div class="col s12 m12 l6">    
             <div class="card hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
@@ -92,10 +96,14 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                 <p>Contacta con un profesional</p>
                 </div>
                 <div class="card-action">
-                <a class="blue-text" href="<?php echo site_url();?>doctorUsuario/verificaDoctor">Contacta con un doctor aqui</a>
+                <a class="blue-text" href="<?php echo site_url();?>doctorUsuario/verificaDoctor">Contacta con un consejero aqui</a>
                 </div>
             </div>
         </div>
+        <div class="col s12">
+                <h1 class="center-align">Botón de emergencia.</h1>
+                <p class="flow-text">Si necesitas ayuda presiónalo, enviara un email a tu contacto de emergencia si lo tienes registrado.</p>
+            </div>
         <div class="fixed-action-btn">
             <a href="<?php echo site_url();?>contacto/enviaEmailContacto" class="btn-floating btn-large red" >
                 <i class="large material-icons">mode_edit</i>
