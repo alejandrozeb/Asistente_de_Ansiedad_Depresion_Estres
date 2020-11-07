@@ -12,8 +12,6 @@ if($idPer_sesion==null || $idDoc_sesion==null){
         <div class="nav-wrapper">
         <a href="#" class="brand-logo">AsistenteAEE</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Ingresar</a></li>
-            <li><a href="badges.html">Registrate</a></li>
             <li><a href="<?php echo site_url();?>doctor/logoutDoctor">Logout</a></li>
         </ul>
         </div>
@@ -21,11 +19,10 @@ if($idPer_sesion==null || $idDoc_sesion==null){
   </div>
 <div class="container">
     <div class="row">
-        <div class="col-12"><h1>Mostrar sus pacientes</h1></div>
+        <div class="col-12"><h1>Tus Pacientes</h1></div>
         <?php
             if($dataPacientes!=null){
             foreach ($dataPacientes as $Paciente) {
-                var_dump($Paciente);
         ?>
             <div class="row">
                 <div class="col s12 m6">
