@@ -15,8 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <input type="password" name="p_password" class="form-control input-sm" placeholder="Password" required>
                       </div>
                       <div class="form-group">
-                          <input type="submit" name="u_login" value="Registrar" class="btn btn-success btn-sm" required>
-                          <a href="<?php echo site_url('home');?>" class="btn btn-warning btn-sm">Iniciar sesión</a>
+                          <input type="submit" name="u_login" value="Iniciar sesión" class="btn btn-success btn-sm" required>
                       </div>
                       <?php echo form_close(); ?>
                   </div>
