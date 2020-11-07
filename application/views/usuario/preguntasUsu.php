@@ -9,12 +9,10 @@ if($idPer_sesion==null || $idUsu_sesion==null){
   <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
+        <p class="brand-logo">AsistenteAEE</p>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="<?php echo site_url();?>registrar/estadisticaResultadoUsuProcess">Resultados por dia</a></li>
             <li><a href="<?php echo site_url();?>registrar/ultimaRespuestaUsu">Ultimo Resultado</a></li>
-            <li><a href="#">Doctor</a></li>
-            <li><a href="badges.html">Registrate</a></li>
             <li><a href="<?php echo site_url();?>registrar/logoutUsuario">LogOut</a></li>
         </ul>
         </div>
@@ -22,6 +20,10 @@ if($idPer_sesion==null || $idUsu_sesion==null){
   </div>
 <div class="container">
       <div class="row">
+            <div class="col s12">
+                <h5><p>Lee las siguientes afirmaciones y selecciona tus respuestas.</p>
+                <p>No existen preguntas correctas o incorrectas. No tome demasiado tiempo para contestar.</p></h5>
+            </div>
           <div class="col-lg-12 col-md-12">
               <div class="panel panel-default" style="margin-top: 50px">
                   <div class="panel-heading flow-text">Cuestionario</div>
@@ -475,7 +477,7 @@ if($idPer_sesion==null || $idUsu_sesion==null){
                       </div>
                       <div class="form-group">
                           <input type="submit" name="u_preguntas" value="Enviar respuestas" class="btn btn-success btn-sm" required>
-                          <a href="<?php echo site_url('home');?>" class="btn btn-warning btn-sm">Limpiar respuestas</a>
+                          <!-- <a href="<?php echo site_url('home');?>" class="btn btn-warning btn-sm">Limpiar respuestas</a> -->
                       </div>
                       <?php echo form_close(); ?>
                   </div>

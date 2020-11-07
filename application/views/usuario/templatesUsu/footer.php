@@ -12,30 +12,29 @@ if($idPer_sesion==null || $idUsu_sesion==null){
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/materialize.min.js"></script>
   </body>
-
-    <footer class="page-footer">
+  <footer class="page-footer">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text">Contáctame</h5>
+                <p class="grey-text text-lighten-4">Si tienes preguntas puedes contactarme enviándome un mensaje a:  </p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+                <h6 class="white-text">Información</h6>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li>Email: asistenteaee@gmail.com</li>
+                  <li>Email2: alejandrojzeballos@gmail.com</li>
+                  <li>Telefono: 79537517</li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            © 2020 AsistenteAEE
+            <p class="grey-text text-lighten-4 right" href="#!">Alfa 1</p>
             </div>
           </div>
-     </footer>
+        </footer>
+    
 </html>

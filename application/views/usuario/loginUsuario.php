@@ -24,11 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
       </div>
       <div class="row">
-          <div class="col-12">sadasd</div>
-          <div class="col-12">sadasd</div>
-          <div class="col-12">sadasd</div>
-          <div class="col-12">sadasd</div>
-          <div class="col-12">sadasd</div>
-          <div class="col-12">sadasd</div>
+          <div class="col-12">
+                <p>Revisa tus credenciales</p>
+                <p>si tienes problemas al ingresar </p>
+          </div>
       </div>
     </div>
