@@ -15,6 +15,8 @@
                 <p class="flow-text">Plataforma desarrollada para llevar el control de tu ansiedad, estrés y depresión según la herramienta Dass-21.</p>
             </div>
         </div>
+        <?php echo base_url().'<br>';
+              echo site_url();   ?>
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">

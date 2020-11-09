@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost:3308',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'asistenteaee',
+	'hostname' => 'localhost:3308',//
+	'username' => 'root',//id15018372_aeeadmin
+	'password' => '',//JnATGBdPRQJkH8!1
+	'database' => 'asistenteaee',//id15018372_aee
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
