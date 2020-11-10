@@ -283,6 +283,7 @@ class Registrar extends CI_Controller {
         $dir=set_realpath('./resultados/'.$idPer_sesion.$idUsu_sesion."/");
         if(!is_dir($dir)){ 
             mkdir($dir,777);
+            chmod($dir.0777);
         }
         return $dir;
     }
